@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4123973502628292012}
   - component: {fileID: 3723868856895629008}
   m_Layer: 0
-  m_Name: Projectile
+  m_Name: ProjectileImmunePlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1d56efbc70d26f4c8465fbe13d7cd74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tag: Player
 --- !u!50 &4123973502628292012
 Rigidbody2D:
   serializedVersion: 4
