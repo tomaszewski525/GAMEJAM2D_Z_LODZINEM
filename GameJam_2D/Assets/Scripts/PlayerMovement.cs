@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 movedirection;
     public string movementKeyPattern = "UDLR";
     private Vector2 vectorUp = Vector2.up;
+    private Vector2 mousePos;
 
     private float moveX = 0;
     private float moveY = 0;
@@ -45,6 +46,9 @@ public class PlayerMovement : MonoBehaviour
 
     void ProcessInput()
     {
+        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
+        print(angle);
         string verticalKeys = movementKeyPattern.Substring(0,2);
         string horizontalKeys = movementKeyPattern.Substring(2, 2);
 
@@ -66,29 +70,82 @@ public class PlayerMovement : MonoBehaviour
             moveX = Input.GetAxisRaw("HorizontalReversed");
         }
 
+       
         if (m_animator)
         {
-            if (moveX > 0)
+            print(moveX);
+            print(moveY);
+            // UP
+            if(angle > 45 && angle <= 135 && moveY == 0)
             {
-                m_animator.SetTrigger("GoRight");
+                //m_animator.SetTrigger("IdleBackward");
+                m_animator.Play("anim_idle_backward");
+                //print("IdleBackward");
             }
-            else if (moveX==0)
+            else if (angle > 45 && angle <= 135 && moveY != 0)
             {
-                m_animator.SetTrigger("IdleForward 0");
+                m_animator.Play("anim_run_backward");
+                //m_animator.SetTrigger("GoBackward");
+                //print("GOBackward");
+            }
+
+
+            // RIGHT
+            else if (angle > -45 && angle < 45 && moveX == 0)
+            {
+                // m_animator.SetTrigger("IdleRight");
+                m_animator.Play("anim_idle_right");
+                //print("IdleRight");
+            }
+            else if (angle > -45 && angle < 45 && moveX != 0)
+            {
+                // m_animator.SetTrigger("GoRight");
+                m_animator.Play("anim_run_right");
+                //print("GoRight");
+            }
+
+
+
+
+            // FORWARD
+            else if (angle >= -135 && angle < -45 && moveY == 0)
+            {
+                //m_animator.SetTrigger("IdleForward 0");
+                m_animator.Play("anim_idle");
+                //print("IdleForward 0");
+            }
+            else if (angle > -135 && angle < -45 && moveY != 0)
+            {
+                //m_animator.SetTrigger("GoForward");
+                m_animator.Play("anim_run_forward");
+                //print("GoForward");
+            }
+
+
+
+            // LEFT
+            else if (angle > -135 && angle > 135 && moveX == 0)
+            {
+                //m_animator.SetTrigger("IdleLeft");
+                m_animator.Play("anim_idle_left");
+                //print("IdleLeft");
+            }
+            else if (angle > -135 && angle > 135 && moveX != 0)
+            {
+                //m_animator.SetTrigger("GoLeft");
+                m_animator.Play("anim_run_left");
+                //print("GoLeft");
             }
             else
             {
-                m_animator.SetTrigger("GoLeft");
-            }
-
-            if (moveY > 0)
-            {
+                m_animator.Play("anim_idle");
+                //m_animator.SetTrigger("IdleForward 0");
+                //print("IdleForward 0");
 
             }
-            else
-            {
 
-            }
+
+         
         }
         movedirection = new Vector2(moveX, moveY).normalized;
     }
