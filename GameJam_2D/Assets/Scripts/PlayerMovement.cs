@@ -100,7 +100,6 @@ public class PlayerMovement : MonoBehaviour
         float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
         Vector2 dire = GetInput();
         Move(dire);
-        print(dire);
         moveY = dire.y;
         moveX = dire.x;
             if (m_animator)

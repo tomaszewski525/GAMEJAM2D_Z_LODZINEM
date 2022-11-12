@@ -866,6 +866,10 @@ MonoBehaviour:
   - {fileID: 6163462219583371582, guid: 1ae56a6648305a542a3fa04de6874d11, type: 3}
   verticalBorder: 10
   horizontalBorder: 5
+  probabilities:
+  - 0.3
+  - 0.3
+  - 0.4
 --- !u!4 &1210332067
 Transform:
   m_ObjectHideFlags: 0
