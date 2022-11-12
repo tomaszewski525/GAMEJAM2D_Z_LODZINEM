@@ -37,7 +37,7 @@ public class EnemySwitchStrangeFreeze : Enemy
     {
         if (Vector2.Distance(transform.position, player.transform.position) <= dis)
         {
-            player.gameObject.GetComponent<PlayerMovement>().StartCoroutine("Freeze");
+            //player.gameObject.GetComponent<PlayerMovement>().StartCoroutine("Freeze");
             Die();
         }
     }

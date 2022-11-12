@@ -8,9 +8,8 @@ using UnityEngine;
 public class PlayerArrowSwitch : MonoBehaviour
 {
     private PlayerMovement playerMovement;
-
-    public string currentArrows = "UDLR";
-    public string[] arrowSwitchTypes = {"LR", "UD", "LD", "RD", "LU", "RU"};
+    public string currentArrows = "WSAD";
+    public string[] arrowSwitchTypes = {"WS", "AD", "AW", "DW", "AS", "SD"};
 
     private void Start()
     {
