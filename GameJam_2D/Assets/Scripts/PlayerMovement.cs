@@ -15,16 +15,20 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 movedirection;
     public string movementKeyPattern = "UDLR";
 
-    private float rotateSpeed = 50;
     private float moveX = 0;
     private float moveY = 0;
+    bool freeze = false;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
-
-
+    public IEnumerator Freeze()
+    {
+        freeze = true;
+        yield return new WaitForSeconds(3.0f);
+        freeze = false;
+    }
     void Update()
     {
         ProcessInput();
@@ -64,7 +68,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Move()
     {
-        rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
-        rb.AddForce(movedirection.normalized * moveForce);
+        if (!freeze)
+        {
+            rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
+            rb.AddForce(movedirection.normalized * moveForce);
+        }
     }
 }

@@ -40,6 +40,7 @@ public class EnemySwitchNormal : Enemy
         if (collision.collider.GetComponent<Player>() != null)
         {
             collision.collider.GetComponent<Player>().OnHit(-1);
+            //animation of hitting
         }
     }
 }
