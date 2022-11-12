@@ -53,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
         string verticalKeys = movementKeyPattern.Substring(0,2);
         string horizontalKeys = movementKeyPattern.Substring(2, 2);
 
+<<<<<<< HEAD
         if (verticalKeys == "UD")
         {
             moveY = Input.GetAxisRaw("Vertical");
@@ -70,6 +71,10 @@ public class PlayerMovement : MonoBehaviour
             moveX = Input.GetAxisRaw("HorizontalReversed");
         }
 
+=======
+        moveY = Input.GetAxisRaw(verticalKeys);
+        moveX = Input.GetAxisRaw(horizontalKeys);
+>>>>>>> 49bfc0e3b38a8c5f9e29514d52d872d87b4c7722
        
         if (m_animator)
         {
