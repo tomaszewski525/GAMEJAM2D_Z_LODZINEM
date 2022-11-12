@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 1.5f;
     public float moveForce = 2;
     public float maxSpeed = 5;
-    private float angle;
+    public float angle;
 
     private Rigidbody2D rb;
     PlayerArrowSwitch player;
@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     private float moveX = 0;
     private float moveY = 0;
     bool freeze = false;
-    
+
     Vector2 Function(char letter)
     {
         int index = basicKeyPattern.IndexOf(letter);
@@ -103,16 +103,19 @@ public class PlayerMovement : MonoBehaviour
         Move(dire);
         moveY = dire.y;
         moveX = dire.x;
-            if (m_animator)
+
+        bool isNotShootingAnimPlaying = m_animator.GetCurrentAnimatorStateInfo(0).IsName("anim_shoot_backward") || m_animator.GetCurrentAnimatorStateInfo(0).IsName("anim_shoot_forward") || m_animator.GetCurrentAnimatorStateInfo(0).IsName("anim_shoot_left") || m_animator.GetCurrentAnimatorStateInfo(0).IsName( "anim_shoot_right");
+        print(isNotShootingAnimPlaying);
+        if (m_animator)
             {
                 // UP
-                if (angle >= 45 && angle <= 135 && moveY == 0)
+                if (angle >= 45 && angle <= 135 && moveY == 0 && !isNotShootingAnimPlaying)
                 {
                     //m_animator.SetTrigger("IdleBackward");
                     m_animator.Play("anim_idle_backward");
                     //print("IdleBackward");
                 }
-                else if (angle >= 45 && angle <= 135 && moveY != 0)
+                else if (angle >= 45 && angle <= 135 && moveY != 0 && !isNotShootingAnimPlaying)
                 {
                     m_animator.Play("anim_run_backward");
                     //m_animator.SetTrigger("GoBackward");
@@ -121,13 +124,13 @@ public class PlayerMovement : MonoBehaviour
 
 
                 // RIGHT
-                else if (angle >= -45 && angle < 45 && moveX == 0)
+                else if (angle >= -45 && angle < 45 && moveX == 0 && !isNotShootingAnimPlaying)
                 {
                     // m_animator.SetTrigger("IdleRight");
                     m_animator.Play("anim_idle_right");
                     //print("IdleRight");
                 }
-                else if (angle >= -45 && angle < 45 && moveX != 0)
+                else if (angle >= -45 && angle < 45 && moveX != 0 && !isNotShootingAnimPlaying)
                 {
                     // m_animator.SetTrigger("GoRight");
                     m_animator.Play("anim_run_right");
@@ -138,37 +141,40 @@ public class PlayerMovement : MonoBehaviour
 
 
                 // FORWARD
-                else if (angle >= -135 && angle < -45 && moveY == 0)
+                else if (angle >= -135 && angle < -45 && moveY == 0 && !isNotShootingAnimPlaying)
                 {
+               // m_animator.
+               
+               // print(m_animator.IsInTransition());
                     //m_animator.SetTrigger("IdleForward 0");
-                    m_animator.Play("anim_idle");
+                    m_animator.PlayInFixedTime("anim_idle");
                     //print("IdleForward 0");
                 }
-                else if (angle >= -135 && angle < -45 && moveY != 0)
+                else if (angle >= -135 && angle < -45 && moveY != 0 && !isNotShootingAnimPlaying)
                 {
                     //m_animator.SetTrigger("GoForward");
-                    m_animator.Play("anim_run_forward");
+                    m_animator.PlayInFixedTime("anim_run_forward");
                     //print("GoForward");
                 }
 
 
 
                 // LEFT
-                else if (angle > -135 && angle > 135 && moveX == 0)
+                else if (angle > -135 && angle > 135 && moveX == 0 && !isNotShootingAnimPlaying)
                 {
                     //m_animator.SetTrigger("IdleLeft");
-                    m_animator.Play("anim_idle_left");
+                    m_animator.PlayInFixedTime("anim_idle_left");
                     //print("IdleLeft");
                 }
-                else if (angle > -135 && angle > 135 && moveX != 0)
+                else if (angle > -135 && angle > 135 && moveX != 0 && !isNotShootingAnimPlaying)
                 {
                     //m_animator.SetTrigger("GoLeft");
-                    m_animator.Play("anim_run_left");
+                    m_animator.PlayInFixedTime("anim_run_left" );
                     //print("GoLeft");
                 }
-                else
+                else if(!isNotShootingAnimPlaying)
                 {
-                    m_animator.Play("anim_idle");
+                    m_animator.PlayInFixedTime("anim_idle");
                     //m_animator.SetTrigger("IdleForward 0");
                     //print("IdleForward 0");
 
