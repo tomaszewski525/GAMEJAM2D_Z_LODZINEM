@@ -7,24 +7,26 @@ using UnityEngine;
 
 public class PlayerArrowSwitch : MonoBehaviour
 {
-    public int recentlyKilledEnemyType;
     public string currentArrows = "UDLR";
     public string[] arrowSwitchTypes = {"LR", "UD", "LU", "LD", "UR", "RD"};
 
     private void Start()
     {
-        //Enemy.OnEnemyDeath += SwitchArrows;
+        Enemy.OnEnemyDeath += SwitchArrows;
     }
-    public void SwitchArrows(int arrowSwitchTypeNum)
+    public void SwitchArrows(Enemy e)
     {
+        int arrowSwitchTypeNum = e.enemyType;
         string arrowSwitchType = arrowSwitchTypes[arrowSwitchTypeNum];
         char firstKey = arrowSwitchType[0];
         char secondKey = arrowSwitchType[1];
         currentArrows = currentArrows.Replace(firstKey, '~').Replace(secondKey, firstKey).Replace('~', secondKey);
     }
 
-    public void SetRecentlyKilledEnemyType(int type)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        recentlyKilledEnemyType = type;
+        if (collision.collider.GetComponent<IEnemy>() == null) { return; }
+        Enemy e = collision.collider.GetComponent<Enemy>();
+        e.OnHit(3);
     }
 }

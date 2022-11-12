@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     public int score_num;
     public int health;
 
+    [HideInInspector] 
     public int enemyType;
 
     public void CommunicateArrowSwitch()
@@ -36,10 +37,7 @@ public class Enemy : MonoBehaviour
     void Die()
     {
         alive = false;
-        if (OnEnemyDeath != null)
-        {
-            OnEnemyDeath(this);
-        }
+        OnEnemyDeath?.Invoke(this);
         Destroy(gameObject);
     }
 }
