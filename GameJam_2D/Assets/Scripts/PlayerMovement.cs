@@ -13,10 +13,11 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 1.5f;
     public float moveForce = 2;
     public float maxSpeed = 5;
+    private float angle;
 
     private Rigidbody2D rb;
     PlayerArrowSwitch player;
-    private Animator m_animator;
+    public Animator m_animator;
     private const string basicKeyPattern = "WSAD";
     public string movementKeyPattern;
     //private Dictionary<string, Vector2> a = { }; // up -> 0 -> "DULR"[0] -> D -> vector2(0,-1)
@@ -97,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
     void ProcessInput()
     {
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
+        angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
         Vector2 dire = GetInput();
         Move(dire);
         print(dire);
@@ -106,13 +107,13 @@ public class PlayerMovement : MonoBehaviour
             if (m_animator)
             {
                 // UP
-                if (angle > 45 && angle <= 135 && moveY == 0)
+                if (angle >= 45 && angle <= 135 && moveY == 0)
                 {
                     //m_animator.SetTrigger("IdleBackward");
                     m_animator.Play("anim_idle_backward");
                     //print("IdleBackward");
                 }
-                else if (angle > 45 && angle <= 135 && moveY != 0)
+                else if (angle >= 45 && angle <= 135 && moveY != 0)
                 {
                     m_animator.Play("anim_run_backward");
                     //m_animator.SetTrigger("GoBackward");
@@ -121,13 +122,13 @@ public class PlayerMovement : MonoBehaviour
 
 
                 // RIGHT
-                else if (angle > -45 && angle < 45 && moveX == 0)
+                else if (angle >= -45 && angle < 45 && moveX == 0)
                 {
                     // m_animator.SetTrigger("IdleRight");
                     m_animator.Play("anim_idle_right");
                     //print("IdleRight");
                 }
-                else if (angle > -45 && angle < 45 && moveX != 0)
+                else if (angle >= -45 && angle < 45 && moveX != 0)
                 {
                     // m_animator.SetTrigger("GoRight");
                     m_animator.Play("anim_run_right");
@@ -144,7 +145,7 @@ public class PlayerMovement : MonoBehaviour
                     m_animator.Play("anim_idle");
                     //print("IdleForward 0");
                 }
-                else if (angle > -135 && angle < -45 && moveY != 0)
+                else if (angle >= -135 && angle < -45 && moveY != 0)
                 {
                     //m_animator.SetTrigger("GoForward");
                     m_animator.Play("anim_run_forward");

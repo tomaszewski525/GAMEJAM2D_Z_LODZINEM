@@ -8,7 +8,7 @@ public class Gun : MonoBehaviour
     public Projectile projectile;
     public float msBetweenShots = 100;
     public int burstCount;
-
+    public PlayerMovement playerMovement;
 
     private float nextShotTime;
     private int shotsRemainingInBurst;
@@ -25,6 +25,7 @@ public class Gun : MonoBehaviour
 
         if (Time.time > nextShotTime && !isReloading)
         {
+
             if (shotsRemainingInBurst == 0)
             {
                 Reload();

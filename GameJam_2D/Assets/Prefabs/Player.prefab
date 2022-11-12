@@ -124,6 +124,7 @@ MonoBehaviour:
   projectile: {fileID: 6313135219526708656, guid: 68f85363b01db9c4d8c3780a02d3da2c, type: 3}
   msBetweenShots: 100
   burstCount: 10
+  playerMovement: {fileID: 9005655107255860203}
 --- !u!114 &511420928650111257
 MonoBehaviour:
   m_ObjectHideFlags: 0
