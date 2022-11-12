@@ -4,6 +4,7 @@ using System.Collections;
 
 public class Projectile : MonoBehaviour
 {
+    Player player;
     public string tag;
     int speed = 40;
     int damage = 1;
@@ -13,6 +14,8 @@ public class Projectile : MonoBehaviour
 
     void Start()
     {
+        player = FindObjectOfType<Player>();
+        Physics2D.IgnoreCollision(player.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         rb = GetComponent<Rigidbody2D>();
         dir = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
         rb.velocity = new Vector2(dir.x, dir.y) * speed;
@@ -25,4 +28,5 @@ public class Projectile : MonoBehaviour
         collision.collider.GetComponent<IDamagable>().OnHit(damage);
         Destroy(gameObject);
     }
+
 }

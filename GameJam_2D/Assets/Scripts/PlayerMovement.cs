@@ -30,10 +30,12 @@ public class PlayerMovement : MonoBehaviour
         freeze = true;
         yield return new WaitForSeconds(3.0f);
         freeze = false;
+        yield return null;
     }
     void Update()
     {
         ProcessInput();
+        print(freeze);
     }
 
     private void FixedUpdate()

@@ -5,13 +5,11 @@ using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(BoxCollider2D))]
 public class Enemy : MonoBehaviour, IDamagable
 {
+    public float dis;
     public delegate void EnemyDeathAction(Enemy e);
     public static event EnemyDeathAction OnEnemyDeath;
-    public Transform player;
-    public Object enemyInstantiate;
     public bool alive = true;
 
     [HideInInspector]
@@ -26,6 +24,13 @@ public class Enemy : MonoBehaviour, IDamagable
     [HideInInspector] 
     public int enemyType;
 
+    [HideInInspector]
+    public GameObject player;
+
+    void Awake()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
     public void OnHit(int damage)
     {
         if (alive)
@@ -38,16 +43,12 @@ public class Enemy : MonoBehaviour, IDamagable
         }
     }
 
-    public void Spawn()
-    {
-        Vector2 randomSpawnPos = new Vector2(Random.Range(-10, 10), Random.Range(-5, 5));
-        Instantiate(enemyInstantiate, randomSpawnPos, Quaternion.identity);
-    }
-
     public void Die()
     {
         alive = false;
         OnEnemyDeath?.Invoke(this);
         Destroy(gameObject);
     }
+
+
 }

@@ -20,4 +20,12 @@ public class EnemySwitchStrangeIdle : Enemy
         int index = rnd.Next(4, 6);
         enemyType = index;
     }
+
+    void CheckIfAttacked()
+    {
+        if (Vector2.Distance(transform.position, player.transform.position) <= dis)
+        {
+            player.GetComponent<Player>().Die();
+        }
+    }
 }
