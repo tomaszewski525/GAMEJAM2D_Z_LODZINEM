@@ -9,7 +9,7 @@ public class EnemySwitchNormal : Enemy, IEnemy
     public void Start()
     {
         score_num = 2;
-        health = 3;
+        health = 4;
         SetEnemyType();
     }
     public void Move()

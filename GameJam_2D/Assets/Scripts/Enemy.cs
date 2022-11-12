@@ -31,12 +31,14 @@ public class Enemy : MonoBehaviour
         if (health <= 0)
         {
             Die();
+
         }
     }
 
     void Die()
     {
         alive = false;
+        print("enemydeath");
         OnEnemyDeath?.Invoke(this);
         Destroy(gameObject);
     }

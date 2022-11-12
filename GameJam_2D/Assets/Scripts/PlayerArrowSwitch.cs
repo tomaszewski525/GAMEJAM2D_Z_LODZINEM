@@ -7,12 +7,22 @@ using UnityEngine;
 
 public class PlayerArrowSwitch : MonoBehaviour
 {
+    private PlayerMovement playerMovement;
+
     public string currentArrows = "UDLR";
     public string[] arrowSwitchTypes = {"LR", "UD", "LU", "LD", "UR", "RD"};
 
     private void Start()
     {
+        playerMovement = GetComponent<PlayerMovement>();
         Enemy.OnEnemyDeath += SwitchArrows;
+        Enemy.OnEnemyDeath += SendCurrentKeyPattern;
+    }
+
+    private void SendCurrentKeyPattern(Enemy e)
+    {
+        playerMovement.movementKeyPattern = currentArrows;
+        print("sendcirre");
     }
     public void SwitchArrows(Enemy e)
     {
@@ -21,6 +31,7 @@ public class PlayerArrowSwitch : MonoBehaviour
         char firstKey = arrowSwitchType[0];
         char secondKey = arrowSwitchType[1];
         currentArrows = currentArrows.Replace(firstKey, '~').Replace(secondKey, firstKey).Replace('~', secondKey);
+        print("switcharrows");
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
