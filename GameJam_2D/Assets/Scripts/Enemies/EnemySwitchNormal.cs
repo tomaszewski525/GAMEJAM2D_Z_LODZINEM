@@ -14,7 +14,7 @@ public class EnemySwitchNormal : Enemy
         rb = GetComponent<Rigidbody2D>();
         score_num = 1;
         health = 2;
-        speed = 10;
+        speed = 0;
         SetEnemyType();
     }
     public void Move()
@@ -28,15 +28,18 @@ public class EnemySwitchNormal : Enemy
         Move();
     }
 
-    public void Shoot()
-    {
-
-    }
-
     public void SetEnemyType()
     {
         System.Random rnd = new System.Random();
         int index = rnd.Next(0, 2);
         enemyType = index;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.GetComponent<Player>() != null)
+        {
+            collision.collider.GetComponent<Player>().OnHit(-1);
+        }
     }
 }

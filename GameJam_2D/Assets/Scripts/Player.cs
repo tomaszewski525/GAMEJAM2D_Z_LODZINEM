@@ -1,15 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDamagable
 {
+    bool alive = true;
+    int health = 10;
 
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void OnHit(int damage)
     {
-        if (collision.collider.GetComponent<Enemy>() == null) { return; }
-        Enemy e = collision.collider.GetComponent<Enemy>();
-        e.OnHit(3);
+        if (alive)
+        {
+            health -= damage;
+        }
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+    void Die()
+    {
+        alive = false;
+        print("u died");
     }
 }

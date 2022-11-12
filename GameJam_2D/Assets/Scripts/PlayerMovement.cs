@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UIElements;
 
 [RequireComponent(typeof(Rigidbody))]
 
@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 movedirection;
     public string movementKeyPattern = "UDLR";
 
+    private float rotateSpeed = 50;
     private float moveX = 0;
     private float moveY = 0;
 
@@ -34,9 +35,9 @@ public class PlayerMovement : MonoBehaviour
         Move();
     }
 
+
     void ProcessInput()
     {
-        print(movementKeyPattern);
         string verticalKeys = movementKeyPattern.Substring(0,2);
         string horizontalKeys = movementKeyPattern.Substring(2, 2);
 

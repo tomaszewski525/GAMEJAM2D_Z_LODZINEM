@@ -5,7 +5,7 @@ using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IDamagable
 {
     public delegate void EnemyDeathAction(Enemy e);
     public static event EnemyDeathAction OnEnemyDeath;
@@ -24,11 +24,6 @@ public class Enemy : MonoBehaviour
     [HideInInspector] 
     public int enemyType;
 
-    public void CommunicateArrowSwitch()
-    {
-
-    }
-
     public void OnHit(int damage)
     {
         if (alive)
@@ -38,7 +33,6 @@ public class Enemy : MonoBehaviour
         if (health <= 0)
         {
             Die();
-
         }
     }
 
