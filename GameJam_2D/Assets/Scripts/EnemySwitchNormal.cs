@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
-public class EnemySwitcherNormal : Enemy
+public class EnemySwitcherNormal : Enemy, IEnemy
 {
     public void Start()
     {
@@ -17,5 +19,12 @@ public class EnemySwitcherNormal : Enemy
     public void Shoot()
     {
 
+    }
+
+    public void SetEnemyType()
+    {
+        System.Random rnd = new System.Random();
+        int index = rnd.Next(0, 2);
+        enemyType = index;
     }
 }
