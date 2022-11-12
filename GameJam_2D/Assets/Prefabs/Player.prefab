@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4191641012895618115}
   - component: {fileID: 9174287419536490987}
   - component: {fileID: 2393236101144942051}
+  - component: {fileID: -7860145431267265765}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -206,6 +207,26 @@ MonoBehaviour:
   - {fileID: 1575064717611362755, guid: a7d6045acba3b6641ad679752ca46a15, type: 3}
   - {fileID: 2525024974740527238, guid: 2c5977c4a62829149bf65de280d8dc93, type: 3}
   - {fileID: 6163462219583371583, guid: 1ae56a6648305a542a3fa04de6874d11, type: 3}
+--- !u!95 &-7860145431267265765
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045206167011717090}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: da6f73a4e937f524b9215dc36b0a7ce5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4742063290200953881
 GameObject:
   m_ObjectHideFlags: 0
