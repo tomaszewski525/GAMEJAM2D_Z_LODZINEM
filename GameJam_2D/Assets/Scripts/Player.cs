@@ -32,6 +32,7 @@ public class Player : MonoBehaviour, IDamagable
         if (Input.GetKeyDown(KeyCode.Space))
         {
             int index = Random.Range(0, 3);
+            enemies[index].Spawn();
         }
     }
 }

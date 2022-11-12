@@ -5,11 +5,12 @@ using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(BoxCollider2D))]
 public class Enemy : MonoBehaviour, IDamagable
 {
     public delegate void EnemyDeathAction(Enemy e);
     public static event EnemyDeathAction OnEnemyDeath;
-    public PlayerArrowSwitch player;
+    public Transform player;
     public Object enemyInstantiate;
     public bool alive = true;
 

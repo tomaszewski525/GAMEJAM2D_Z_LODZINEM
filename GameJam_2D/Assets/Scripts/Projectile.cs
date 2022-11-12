@@ -4,6 +4,7 @@ using System.Collections;
 
 public class Projectile : MonoBehaviour
 {
+    public string tag;
     int speed = 40;
     int damage = 1;
     int lifetime = 3;
@@ -20,7 +21,7 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.GetComponent<IDamagable>() == null) { return; }
+        if (collision.collider.GetComponent<IDamagable>() == null || collision.collider.tag == tag) { return; }
         collision.collider.GetComponent<IDamagable>().OnHit(damage);
         Destroy(gameObject);
     }

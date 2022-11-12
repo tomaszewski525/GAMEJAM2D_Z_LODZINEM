@@ -119,7 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6d5570158b345d45b0b80126a59b505, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1770526268882911109, guid: 61773c6465963ec4e92b6cae6462c4cf, type: 3}
   enemyInstantiate: {fileID: 2525024974740527257}
   alive: 1
   score_num: 0
