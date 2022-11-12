@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemySwitchStrangeIdle : Enemy
 {
     Rigidbody2D rb;
+
     public void Start()
     {
         rb = GetComponent<Rigidbody2D>();

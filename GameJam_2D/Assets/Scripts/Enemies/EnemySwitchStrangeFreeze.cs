@@ -6,6 +6,7 @@ public class EnemySwitchStrangeFreeze : Enemy
 {
     Rigidbody2D rb;
 
+
     public void Start()
     {
         rb = GetComponent<Rigidbody2D>();
