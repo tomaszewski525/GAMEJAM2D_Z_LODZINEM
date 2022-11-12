@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public float maxSpeed = 5;
 
     private Rigidbody2D rb;
+    private Animator m_animator;
     private Vector2 movedirection;
     public string movementKeyPattern = "UDLR";
 
@@ -22,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        m_animator = GetComponent<Animator>();
     }
     public IEnumerator Freeze()
     {
@@ -63,6 +65,25 @@ public class PlayerMovement : MonoBehaviour
             moveX = Input.GetAxisRaw("HorizontalReversed");
         }
 
+        if (m_animator)
+        {
+            if (moveX > 0)
+            {
+                m_animator.SetTrigger("GoRight");
+            }
+            else
+            {
+                m_animator.SetTrigger("GoLeft");
+            }
+
+            if (moveY > 0)
+            {
+            }
+            else
+            {
+
+            }
+        }
         movedirection = new Vector2(moveX, moveY).normalized;
     }
 
