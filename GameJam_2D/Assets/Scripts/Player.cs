@@ -5,6 +5,9 @@ using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour, IDamagable
 {
+
+    public delegate void PlayerHitAction();
+    public static event PlayerHitAction OnPlayerHit;
     bool alive = true;
     int health = 10;
 
@@ -12,6 +15,7 @@ public class Player : MonoBehaviour, IDamagable
     {
         if (alive)
         {
+            OnPlayerHit?.Invoke();
             health -= damage;
         }
         if (health <= 0)

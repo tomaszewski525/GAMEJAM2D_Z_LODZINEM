@@ -20,7 +20,6 @@ public class PlayerMovement : MonoBehaviour
     public Animator m_animator;
     private const string basicKeyPattern = "WSAD";
     public string movementKeyPattern;
-    //private Dictionary<string, Vector2> a = { }; // up -> 0 -> "DULR"[0] -> D -> vector2(0,-1)
     private Vector2 vectorUp = Vector2.up;
     private Vector2 mousePos;
     private Vector2 currentDirection = Vector2.right;
@@ -28,6 +27,10 @@ public class PlayerMovement : MonoBehaviour
     private float moveX = 0;
     private float moveY = 0;
     bool freeze = false;
+
+    public Color from;
+    public Color to;
+    public float colorDuration;
 
     Vector2 Function(char letter)
     {
@@ -65,14 +68,27 @@ public class PlayerMovement : MonoBehaviour
     public IEnumerator Freeze()
     {
         freeze = true;
-        //yield return new WaitForSeconds(3.0f);
+        StartCoroutine(FlashFreeze());
+        yield return new WaitForSeconds(3.0f);
         freeze = false;
         yield return null;
+    }
+
+    IEnumerator FlashFreeze()
+    {
+        print(123);
+        float t = 0f;
+        SpriteRenderer ren = GetComponent<SpriteRenderer>();
+        while (t < colorDuration)
+        {
+            t += Time.deltaTime;
+            ren.color = Color.Lerp(from, to, t / colorDuration);
+            yield return null;
+        }
     }
     void Update()
     {
         ProcessInput();
-        //print(freeze);
     }
 
     Vector2 GetInput()
@@ -81,7 +97,6 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.W))
         {
             dir = Function('W');
-
         }
         else if (Input.GetKey(KeyCode.S)){
             dir = Function('S');
@@ -105,7 +120,6 @@ public class PlayerMovement : MonoBehaviour
         moveX = dire.x;
 
         bool isNotShootingAnimPlaying = m_animator.GetCurrentAnimatorStateInfo(0).IsName("anim_shoot_backward") || m_animator.GetCurrentAnimatorStateInfo(0).IsName("anim_shoot_forward") || m_animator.GetCurrentAnimatorStateInfo(0).IsName("anim_shoot_left") || m_animator.GetCurrentAnimatorStateInfo(0).IsName( "anim_shoot_right");
-        print(isNotShootingAnimPlaying);
         if (m_animator)
             {
                 // UP
