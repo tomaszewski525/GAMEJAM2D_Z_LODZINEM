@@ -4,23 +4,25 @@ using System.Xml.Serialization;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+[RequireComponent(typeof(Rigidbody2D))]
+public class Enemy : MonoBehaviour, IDamagable
 {
     public delegate void EnemyDeathAction(Enemy e);
     public static event EnemyDeathAction OnEnemyDeath;
     public PlayerArrowSwitch player;
-
     public bool alive = true;
+
+    [HideInInspector]
     public int score_num;
+
+    [HideInInspector]
     public int health;
+
+    [HideInInspector]
+    public int speed;
 
     [HideInInspector] 
     public int enemyType;
-
-    public void CommunicateArrowSwitch()
-    {
-
-    }
 
     public void OnHit(int damage)
     {
@@ -31,15 +33,18 @@ public class Enemy : MonoBehaviour
         if (health <= 0)
         {
             Die();
-
         }
     }
 
     void Die()
     {
         alive = false;
-        print("enemydeath");
         OnEnemyDeath?.Invoke(this);
         Destroy(gameObject);
+    }
+
+    void DealDamage()
+    {
+        
     }
 }

@@ -2,17 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySwitchStrange : Enemy, IEnemy
+public class EnemySwitchStrangeIdle : Enemy
 {
+    Rigidbody2D rb;
     public void Start()
     {
-        score_num = 4;
-        health = 2;
+        rb = GetComponent<Rigidbody2D>();
+        score_num = 0;
+        health = 1;
+        speed = 0;
         SetEnemyType();
-    }
-    public void Move()
-    {
-
     }
 
     public void Shoot()
@@ -20,10 +19,15 @@ public class EnemySwitchStrange : Enemy, IEnemy
 
     }
 
+    public void Spawn()
+    {
+
+    }
+
     public void SetEnemyType()
     {
         System.Random rnd = new System.Random();
-        int index = rnd.Next(2, 6);
+        int index = rnd.Next(4, 6);
         enemyType = index;
     }
 }
