@@ -30,14 +30,14 @@ public class PlayerMovement : MonoBehaviour
     public IEnumerator Freeze()
     {
         freeze = true;
-        yield return new WaitForSeconds(3.0f);
+        //yield return new WaitForSeconds(3.0f);
         freeze = false;
         yield return null;
     }
     void Update()
     {
         ProcessInput();
-        print(freeze);
+        //print(freeze);
     }
 
     private void FixedUpdate()
@@ -50,7 +50,6 @@ public class PlayerMovement : MonoBehaviour
     {
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
-        print(angle);
         string verticalKeys = movementKeyPattern.Substring(0,2);
         string horizontalKeys = movementKeyPattern.Substring(2, 2);
 
@@ -62,7 +61,6 @@ public class PlayerMovement : MonoBehaviour
         {
             moveY = Input.GetAxisRaw("VerticalReversed");
         }
-
         if (horizontalKeys == "LR")
         {
             moveX = Input.GetAxisRaw("Horizontal");
@@ -75,8 +73,6 @@ public class PlayerMovement : MonoBehaviour
        
         if (m_animator)
         {
-            print(moveX);
-            print(moveY);
             // UP
             if(angle > 45 && angle <= 135 && moveY == 0)
             {
