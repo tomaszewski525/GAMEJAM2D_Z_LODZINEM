@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator m_animator;
     private Vector2 movedirection;
     public string movementKeyPattern = "UDLR";
+    private Vector2 vectorUp = Vector2.up;
 
     private float moveX = 0;
     private float moveY = 0;
@@ -71,6 +72,10 @@ public class PlayerMovement : MonoBehaviour
             {
                 m_animator.SetTrigger("GoRight");
             }
+            else if (moveX==0)
+            {
+                m_animator.SetTrigger("IdleForward 0");
+            }
             else
             {
                 m_animator.SetTrigger("GoLeft");
@@ -78,6 +83,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (moveY > 0)
             {
+
             }
             else
             {
