@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5;
-
+    public float moveForce = 10;
+    float maxSpeed = 5;
     public Rigidbody2D rb;
     Vector2 movedirection;
 
@@ -31,51 +32,38 @@ public class PlayerMovement : MonoBehaviour
 
     void ProcessInput()
     {
+        string g = "DURL";
+        string verticalKeys = g.Substring(0,2);
+        string horizontalKeys = g.Substring(2, 2);
 
-        if (Input.GetKeyDown(KeyCode.W))
+        if (verticalKeys == "UD")
         {
-            moveY = 1;
-            //print("W");
+            moveY = Input.GetAxisRaw("Vertical");
         }
-        else if (Input.GetKeyDown(KeyCode.S))
+        else if (verticalKeys == "DU")
         {
-            moveY = -1;
-            //print("S");
-        }
-        else
-        {
-            //moveY = 0;
+            moveY = Input.GetAxisRaw("VerticalReversed");
         }
 
-        if (Input.GetKeyDown(KeyCode.A))
+        if (horizontalKeys == "LR")
         {
-            moveX = -1;
-           // print("A");
+            moveX = Input.GetAxisRaw("Horizontal");
         }
-        else if (Input.GetKeyDown(KeyCode.D))
+        else if (horizontalKeys == "RL")
         {
-            moveX = 1;
-            //print("D");
+            moveX = Input.GetAxisRaw("HorizontalReversed");
         }
-        else
-        {
-           // moveX = 0;
-        }
-
-        moveX = Input.GetAxisRaw("HorizontalReversed");
-        moveY = Input.GetAxisRaw("Vertical");
 
         movedirection = new Vector2(moveX, moveY).normalized;
-
-        //print(movedirection.x);
-        //print(movedirection.y);
 
     }
 
     void Move()
     {
-        rb.velocity = new Vector2(movedirection.x * moveSpeed, movedirection.y * moveSpeed);
-        print(movedirection.x * moveSpeed);
-        print(movedirection.y * moveSpeed);
+        //rb.velocity = new Vector2(movedirection.x * moveSpeed, movedirection.y * moveSpeed);
+        rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
+
+
+        rb.AddForce(movedirection.normalized * moveForce);
     }
 }
