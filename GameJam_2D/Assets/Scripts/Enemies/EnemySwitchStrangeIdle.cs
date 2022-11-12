@@ -14,16 +14,6 @@ public class EnemySwitchStrangeIdle : Enemy
         SetEnemyType();
     }
 
-    public void Shoot()
-    {
-
-    }
-
-    public void Spawn()
-    {
-
-    }
-
     public void SetEnemyType()
     {
         System.Random rnd = new System.Random();

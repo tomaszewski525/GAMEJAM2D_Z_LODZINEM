@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour, IDamagable
 {
+    public Enemy[] enemies;
     bool alive = true;
     int health = 10;
 
@@ -19,9 +20,18 @@ public class Player : MonoBehaviour, IDamagable
             Die();
         }
     }
+
     void Die()
     {
         alive = false;
         print("u died");
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            int index = Random.Range(0, 3);
+        }
     }
 }

@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour, IDamagable
     public delegate void EnemyDeathAction(Enemy e);
     public static event EnemyDeathAction OnEnemyDeath;
     public PlayerArrowSwitch player;
+    public Object enemyInstantiate;
     public bool alive = true;
 
     [HideInInspector]
@@ -36,15 +37,16 @@ public class Enemy : MonoBehaviour, IDamagable
         }
     }
 
-    void Die()
+    public void Spawn()
+    {
+        Vector2 randomSpawnPos = new Vector2(Random.Range(-10, 10), Random.Range(-5, 5));
+        Instantiate(enemyInstantiate, randomSpawnPos, Quaternion.identity);
+    }
+
+    public void Die()
     {
         alive = false;
         OnEnemyDeath?.Invoke(this);
         Destroy(gameObject);
-    }
-
-    void DealDamage()
-    {
-        
     }
 }

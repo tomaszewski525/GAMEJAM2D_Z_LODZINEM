@@ -25,15 +25,20 @@ public class EnemySwitchStrangeFreeze : Enemy
         Move();
     }
 
-    public void Shoot()
-    {
-
-    }
-
     public void SetEnemyType()
     {
         System.Random rnd = new System.Random();
         int index = rnd.Next(2, 4);
         enemyType = index;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.GetComponent<PlayerMovement>() != null)
+        {
+            collision.collider.GetComponent<PlayerMovement>().Freeze();
+            //animation of explozion and freeze
+            Die();
+        }
     }
 }
