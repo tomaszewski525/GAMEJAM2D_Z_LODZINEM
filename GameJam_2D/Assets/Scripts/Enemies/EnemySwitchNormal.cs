@@ -2,19 +2,30 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using UnityEditor;
 using UnityEngine;
 
-public class EnemySwitchNormal : Enemy, IEnemy
+public class EnemySwitchNormal : Enemy
 {
+    Rigidbody2D rb;
+
     public void Start()
     {
-        score_num = 2;
-        health = 4;
+        rb = GetComponent<Rigidbody2D>();
+        score_num = 1;
+        health = 2;
+        speed = 10;
         SetEnemyType();
     }
     public void Move()
     {
+        var direction = -(transform.position - player.transform.position).normalized;
+        rb.MovePosition(transform.position + speed * direction * Time.fixedDeltaTime);
+    }
 
+    private void FixedUpdate()
+    {
+        Move();
     }
 
     public void Shoot()

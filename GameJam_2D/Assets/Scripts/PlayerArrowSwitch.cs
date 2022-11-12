@@ -10,7 +10,7 @@ public class PlayerArrowSwitch : MonoBehaviour
     private PlayerMovement playerMovement;
 
     public string currentArrows = "UDLR";
-    public string[] arrowSwitchTypes = {"LR", "UD", "LU", "LD", "UR", "RD"};
+    public string[] arrowSwitchTypes = {"LR", "UD", "LD", "RD", "LU", "RU"};
 
     private void Start()
     {
@@ -22,7 +22,6 @@ public class PlayerArrowSwitch : MonoBehaviour
     private void SendCurrentKeyPattern(Enemy e)
     {
         playerMovement.movementKeyPattern = currentArrows;
-        print("sendcirre");
     }
     public void SwitchArrows(Enemy e)
     {
@@ -31,13 +30,5 @@ public class PlayerArrowSwitch : MonoBehaviour
         char firstKey = arrowSwitchType[0];
         char secondKey = arrowSwitchType[1];
         currentArrows = currentArrows.Replace(firstKey, '~').Replace(secondKey, firstKey).Replace('~', secondKey);
-        print("switcharrows");
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.collider.GetComponent<IEnemy>() == null) { return; }
-        Enemy e = collision.collider.GetComponent<Enemy>();
-        e.OnHit(3);
     }
 }
