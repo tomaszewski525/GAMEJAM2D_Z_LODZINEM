@@ -6,13 +6,15 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public delegate void EnemyDeathAction();
+    public delegate void EnemyDeathAction(Enemy e);
     public static event EnemyDeathAction OnEnemyDeath;
-    public Transform player;
+    public PlayerArrowSwitch player;
 
     public bool alive = true;
     public int score_num;
     public int health;
+
+    public int enemyType;
 
     public void CommunicateArrowSwitch()
     {
@@ -36,7 +38,7 @@ public class Enemy : MonoBehaviour
         alive = false;
         if (OnEnemyDeath != null)
         {
-            OnEnemyDeath();
+            OnEnemyDeath(this);
         }
         Destroy(gameObject);
     }
