@@ -1,32 +1,65 @@
+using Newtonsoft.Json.Bson;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
 
 [RequireComponent(typeof(Rigidbody))]
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 5;
-    public float moveForce = 10;
+    public float moveSpeed = 1.5f;
+    public float moveForce = 2;
     public float maxSpeed = 5;
 
     private Rigidbody2D rb;
+    PlayerArrowSwitch player;
     private Animator m_animator;
-    private Vector2 movedirection;
-    public string movementKeyPattern = "UDLR";
+    private const string basicKeyPattern = "WSAD";
+    public string movementKeyPattern;
+    //private Dictionary<string, Vector2> a = { }; // up -> 0 -> "DULR"[0] -> D -> vector2(0,-1)
     private Vector2 vectorUp = Vector2.up;
     private Vector2 mousePos;
+    private Vector2 currentDirection = Vector2.right;
 
     private float moveX = 0;
     private float moveY = 0;
     bool freeze = false;
-
+    
+    Vector2 Function(char letter)
+    {
+        int index = basicKeyPattern.IndexOf(letter);
+        char l = movementKeyPattern[index];
+        if (l == 'S')
+        {
+            return Vector2.down;
+        }
+        else if (l == 'W')
+        {
+            return Vector2.up;
+        }
+        else if (l == 'A')
+        {
+            return Vector2.left;
+        }
+        else if (l == 'D')
+        {
+            return Vector2.right;
+        }
+        else return Vector2.zero;
+    }
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         m_animator = GetComponent<Animator>();
+    }
+
+    private void Awake()
+    {
+        player = GetComponent<PlayerArrowSwitch>();
+        movementKeyPattern = player.currentArrows;
     }
     public IEnumerator Freeze()
     {
@@ -41,39 +74,35 @@ public class PlayerMovement : MonoBehaviour
         //print(freeze);
     }
 
-    private void FixedUpdate()
+    Vector2 GetInput()
     {
-        Move();
-    }
+        Vector2 dir = Vector2.zero;
+        if (Input.GetKey(KeyCode.W))
+        {
+            dir = Function('W');
 
+        }
+        else if (Input.GetKey(KeyCode.S)){
+            dir = Function('S');
+        }
+        else if (Input.GetKey(KeyCode.A)){
+            dir = Function('A');
+        }
+        else if (Input.GetKey(KeyCode.D)){
+            dir = Function('D');
+        }
+        return dir;
+    }
 
     void ProcessInput()
     {
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
-        string verticalKeys = movementKeyPattern.Substring(0,2);
-        string horizontalKeys = movementKeyPattern.Substring(2, 2);
-
-        if (verticalKeys == "UD")
-        {
-            moveY = Input.GetAxisRaw("Vertical");
-        }
-        else if (verticalKeys == "DU")
-        {
-            moveY = Input.GetAxisRaw("VerticalReversed");
-            
-        if (horizontalKeys == "LR")
-        {
-            moveX = Input.GetAxisRaw("Horizontal");
-        }
-        else if (horizontalKeys == "RL")
-        {
-            moveX = Input.GetAxisRaw("HorizontalReversed");
-        }
-
-        moveY = Input.GetAxisRaw(verticalKeys);
-        moveX = Input.GetAxisRaw(horizontalKeys);
-
+        Vector2 dire = GetInput();
+        Move(dire);
+        print(dire);
+        moveY = dire.y;
+        moveX = dire.x;
             if (m_animator)
             {
                 // UP
@@ -144,14 +173,11 @@ public class PlayerMovement : MonoBehaviour
                     //print("IdleForward 0");
 
                 }
-
-            }
-         
         }
-        movedirection = new Vector2(moveX, moveY).normalized;
     }
+    
 
-    void Move()
+    void Move(Vector2 movedirection)
     {
         if (!freeze)
         {
