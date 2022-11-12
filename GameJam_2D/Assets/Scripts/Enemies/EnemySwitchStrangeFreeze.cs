@@ -23,6 +23,7 @@ public class EnemySwitchStrangeFreeze : Enemy
     private void FixedUpdate()
     {
         Move();
+        CheckIfAttacked();
     }
 
     public void SetEnemyType()
@@ -32,12 +33,11 @@ public class EnemySwitchStrangeFreeze : Enemy
         enemyType = index;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void CheckIfAttacked()
     {
-        if (collision.collider.GetComponent<PlayerMovement>() != null)
+        if (Vector2.Distance(transform.position, player.transform.position) <= dis)
         {
-            collision.collider.GetComponent<PlayerMovement>().Freeze();
-            //animation of explozion and freeze
+            player.gameObject.GetComponent<PlayerMovement>().StartCoroutine("Freeze");
             Die();
         }
     }

@@ -1,3 +1,4 @@
+using Newtonsoft.Json.Bson;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -26,6 +27,7 @@ public class EnemySwitchNormal : Enemy
     private void FixedUpdate()
     {
         Move();
+        CheckIfAttacked();
     }
 
     public void SetEnemyType()
@@ -35,12 +37,11 @@ public class EnemySwitchNormal : Enemy
         enemyType = index;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void CheckIfAttacked()
     {
-        if (collision.collider.GetComponent<Player>() != null)
+        if (Vector2.Distance(transform.position, player.transform.position) <= dis)
         {
-            collision.collider.GetComponent<Player>().OnHit(-1);
-            //animation of hitting
+            player.GetComponent<Player>().OnHit(-1);
         }
     }
 }
