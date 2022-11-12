@@ -13,13 +13,11 @@ public class PlayerMovement : MonoBehaviour
     float moveX = 0;
     float moveY = 0;
 
-    // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         ProcessInput();
@@ -32,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
 
     void ProcessInput()
     {
-        string g = "DURL";
+        string g = "UDLR";
         string verticalKeys = g.Substring(0,2);
         string horizontalKeys = g.Substring(2, 2);
 
@@ -62,8 +60,6 @@ public class PlayerMovement : MonoBehaviour
     {
         //rb.velocity = new Vector2(movedirection.x * moveSpeed, movedirection.y * moveSpeed);
         rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
-
-
         rb.AddForce(movedirection.normalized * moveForce);
     }
 }

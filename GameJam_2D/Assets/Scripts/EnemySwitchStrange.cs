@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySwitcherStrange : Enemy, IEnemy
+public class EnemySwitchStrange : Enemy, IEnemy
 {
     public void Start()
     {
         score_num = 4;
         health = 2;
+        SetEnemyType();
     }
     public void Move()
     {

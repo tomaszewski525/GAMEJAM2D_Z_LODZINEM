@@ -13,6 +13,8 @@ public class Enemy : MonoBehaviour
     public bool alive = true;
     public int score_num;
     public int health;
+
+    [HideInInspector] 
     public int enemyType;
 
     public void CommunicateArrowSwitch()

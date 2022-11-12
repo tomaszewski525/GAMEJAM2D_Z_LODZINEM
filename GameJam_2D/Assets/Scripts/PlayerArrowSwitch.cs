@@ -7,7 +7,6 @@ using UnityEngine;
 
 public class PlayerArrowSwitch : MonoBehaviour
 {
-    public int recentlyKilledEnemyType;
     public string currentArrows = "UDLR";
     public string[] arrowSwitchTypes = {"LR", "UD", "LU", "LD", "UR", "RD"};
 
@@ -22,5 +21,12 @@ public class PlayerArrowSwitch : MonoBehaviour
         char firstKey = arrowSwitchType[0];
         char secondKey = arrowSwitchType[1];
         currentArrows = currentArrows.Replace(firstKey, '~').Replace(secondKey, firstKey).Replace('~', secondKey);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.GetComponent<IEnemy>() == null) { return; }
+        Enemy e = collision.collider.GetComponent<Enemy>();
+        e.OnHit(3);
     }
 }
