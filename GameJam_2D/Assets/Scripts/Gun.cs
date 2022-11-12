@@ -30,15 +30,15 @@ public class Gun : MonoBehaviour
             {
                 playerMovement.m_animator.Play("anim_shoot_backward");
             }
-            else if(playerMovement.angle >= 45 && playerMovement.angle <= 135)
+            else if(playerMovement.angle >= -45 && playerMovement.angle <= 45)
             {
                 playerMovement.m_animator.Play("anim_shoot_right");
             }
-            else if(playerMovement.angle >= -45 && playerMovement.angle < 45)
+            else if(playerMovement.angle >= -135 && playerMovement.angle < -45)
             {
                 playerMovement.m_animator.Play("anim_shoot_forward");
             }
-            else if(playerMovement.angle >= -45 && playerMovement.angle < 45)
+            else if(playerMovement.angle > -135 && playerMovement.angle > 135)
             {
                 playerMovement.m_animator.Play("anim_shoot_left");
             }
