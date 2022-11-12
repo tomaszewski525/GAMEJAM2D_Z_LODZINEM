@@ -9,6 +9,7 @@ public class Gun : MonoBehaviour
     public float msBetweenShots = 100;
     public int burstCount;
 
+
     private float nextShotTime;
     private int shotsRemainingInBurst;
     private bool isReloading;
@@ -21,6 +22,7 @@ public class Gun : MonoBehaviour
 
     void Shoot()
     {
+
         if (Time.time > nextShotTime && !isReloading)
         {
             if (shotsRemainingInBurst == 0)
