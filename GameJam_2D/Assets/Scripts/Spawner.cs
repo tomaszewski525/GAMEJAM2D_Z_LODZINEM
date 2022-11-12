@@ -19,7 +19,7 @@ public class Spawner : MonoBehaviour
     }
 
     private void Start()
-    {
+    { 
         elements = new List<KeyValuePair<Object, float>>();
         for (int i = 0; i < enemies.Length; i++)
         {
