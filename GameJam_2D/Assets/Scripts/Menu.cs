@@ -109,11 +109,14 @@ public class Menu : MonoBehaviour
     {
         float t = 0f;
         Image image = panel.GetComponent<Image>();
-        Color initialA = image.color;
+        var tempColor = image.color;
+        image.color = tempColor;
+        float initialA = image.color.a;
         while (t < time)
         {
             t += Time.deltaTime;
-            image.color = Color.Lerp(initialA, to, t / time);
+            tempColor.a = Mathf.Lerp(initialA, 0f, t/time);
+            image.color = tempColor;
             yield return null;
         }
     }
