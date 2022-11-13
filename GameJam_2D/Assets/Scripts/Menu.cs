@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {
+    public delegate void OnPressPlay(Menu e);
+    public static event OnPressPlay pressPlay;
+
     public Text[] texts;
     public float time;
     public Color to;
@@ -22,6 +25,9 @@ public class Menu : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Play();
+            pressPlay?.Invoke(this);
+
+
         }
         else if (Input.GetKeyDown(KeyCode.Escape))
         {

@@ -9,6 +9,8 @@ public class Enemy : MonoBehaviour, IDamagable
 {
     public delegate void EnemyDeathAction(Enemy e);
     public static event EnemyDeathAction OnEnemyDeath;
+
+
     public bool alive = true;
 
     [HideInInspector]
