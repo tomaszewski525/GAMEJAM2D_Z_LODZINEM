@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1575064717611362781}
   - component: {fileID: 1575064717611362754}
   - component: {fileID: 1575064717611362755}
-  - component: {fileID: -2805269492723803711}
+  - component: {fileID: 1671158816365544218}
   m_Layer: 0
   m_Name: FreezeEnemy
   m_TagString: Untagged
@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1575064717611362752}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: -1.4599864, z: 0}
+  m_LocalPosition: {x: 0.5, y: -1.385, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -127,8 +127,8 @@ MonoBehaviour:
   speed: 0
   enemyType: 0
   player: {fileID: 0}
---- !u!61 &-2805269492723803711
-BoxCollider2D:
+--- !u!58 &1671158816365544218
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -140,16 +140,6 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.21133333}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.28866667}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: 0.007830471, y: 0.08408752}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Radius: 0.38058463

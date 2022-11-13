@@ -7,7 +7,6 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Enemy : MonoBehaviour, IDamagable
 {
-    public float dis;
     public delegate void EnemyDeathAction(Enemy e);
     public static event EnemyDeathAction OnEnemyDeath;
     public bool alive = true;
@@ -21,7 +20,6 @@ public class Enemy : MonoBehaviour, IDamagable
     [HideInInspector]
     public int speed;
 
-    [HideInInspector] 
     public int enemyType;
 
     [HideInInspector]
