@@ -6,7 +6,7 @@ public class Projectile : MonoBehaviour
 {
     Player player;
     public string tag;
-    int speed = 40;
+    float speed = 0.0001f;
     int damage = 1;
     int lifetime = 3;
     Vector3 dir;
@@ -16,15 +16,25 @@ public class Projectile : MonoBehaviour
     {
         player = FindObjectOfType<Player>();
         Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-
+        rb = GetComponent<Rigidbody2D>();
         dir = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
+
         rb.velocity = new Vector2(dir.x, dir.y) * speed;
+
         Destroy(gameObject, lifetime);
+    }
+
+    private void Update()
+    {
+        //rb.velocity = new Vector2(dir.x, dir.y) * speed;
+        //print(rb.velocity);
+        //transform.Translate((transform.forward * 0.0001f * Time.deltaTime));
+        //print(transform.position);
+        //Destroy(gameObject, lifetime);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        print("Kurde");
         if (collision.collider.GetComponent<IDamagable>() == null || collision.collider.tag == tag) 
         { return; 
         }
