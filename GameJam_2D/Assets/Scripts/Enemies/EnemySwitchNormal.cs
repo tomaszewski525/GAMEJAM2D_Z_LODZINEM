@@ -16,7 +16,6 @@ public class EnemySwitchNormal : Enemy
         score_num = 1;
         health = 2;
         speed = 10;
-        SetEnemyType();
     }
     public void Move()
     {
@@ -30,16 +29,9 @@ public class EnemySwitchNormal : Enemy
         CheckIfAttacked();
     }
 
-    public void SetEnemyType()
-    {
-        System.Random rnd = new System.Random();
-        int index = rnd.Next(0, 2);
-        enemyType = index;
-    }
-
     void CheckIfAttacked()
     {
-        if (Vector2.Distance(transform.position, player.transform.position) <= dis)
+        if (Vector2.Distance(transform.position, player.transform.position) <= 1.7)
         {
             player.GetComponent<Player>().OnHit(-1);
         }

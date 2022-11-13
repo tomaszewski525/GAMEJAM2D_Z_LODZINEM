@@ -1,19 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class EnemySwitchStrangeFreeze : Enemy
 {
     Rigidbody2D rb;
-
-
     public void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         score_num = 2;
         health = 3;
         speed = 4;
-        SetEnemyType();
     }
     public void Move()
     {
@@ -27,19 +25,33 @@ public class EnemySwitchStrangeFreeze : Enemy
         CheckIfAttacked();
     }
 
-    public void SetEnemyType()
-    {
-        System.Random rnd = new System.Random();
-        int index = rnd.Next(2, 4);
-        enemyType = index;
-    }
-
     void CheckIfAttacked()
     {
-        if (Vector2.Distance(transform.position, player.transform.position) <= dis)
+        if (Vector2.Distance(transform.position, player.transform.position) <= 1.3f)
         {
             player.gameObject.GetComponent<PlayerMovement>().StartCoroutine("Freeze");
+            StartCoroutine("Attack");
             Die();
+        }
+    }
+
+    IEnumerator Attack()
+    {
+        print("enter");
+        Vector3 originalPosition = transform.position;
+        Vector3 dirToTarget = (player.transform.position - transform.position).normalized;
+        Vector3 attackPosition = player.transform.position - dirToTarget * 1.3f;
+
+        float attackSpeed = 3;
+        float percent = 0;
+
+        while (percent <= 1)
+        {
+            print("while");
+            percent += Time.deltaTime * attackSpeed;
+            float interpolation = (-Mathf.Pow(percent, 2) + percent) * 4;
+            transform.position = Vector3.Lerp(originalPosition, attackPosition, interpolation);
+            yield return null;
         }
     }
 }

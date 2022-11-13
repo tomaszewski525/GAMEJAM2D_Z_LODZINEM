@@ -5,6 +5,7 @@ using System.ComponentModel;
 using Unity.PlasticSCM.Editor.WebApi;
 using UnityEditor.U2D.Path.GUIFramework;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class PlayerArrowSwitch : MonoBehaviour
 {
