@@ -76,51 +76,54 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator FlashFreeze()
     {
-       print(123);
-       float t = 0f;
-       SpriteRenderer ren = GetComponent<SpriteRenderer>();
-       while (t < colorDuration)
-       {
-            t += Time.deltaTime;
-           ren.color = Color.Lerp(from, to, t / colorDuration);
-           yield return null;
-        }
-//}
-    void Update()
-    {
-        ProcessInput();
-    }
-
-    Vector2 GetInput()
-    {
-        Vector2 dir = Vector2.zero;
-        if (Input.GetKey(KeyCode.W))
+        print(123);
+        float t = 0f;
+        SpriteRenderer ren = GetComponent<SpriteRenderer>();
+        while (t < colorDuration)
         {
-            dir = Function('W');
+            t += Time.deltaTime;
+            ren.color = Color.Lerp(from, to, t / colorDuration);
+            yield return null;
         }
-        else if (Input.GetKey(KeyCode.S)){
-            dir = Function('S');
+        //}
+        void Update()
+        {
+            ProcessInput();
         }
-        else if (Input.GetKey(KeyCode.A)){
-            dir = Function('A');
-        }
-        else if (Input.GetKey(KeyCode.D)){
-            dir = Function('D');
-        }
-        return dir;
-    }
 
-    void ProcessInput()
-    {
-        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
-        Vector2 dire = GetInput();
-        Move(dire);
-        moveY = dire.y;
-        moveX = dire.x;
+        Vector2 GetInput()
+        {
+            Vector2 dir = Vector2.zero;
+            if (Input.GetKey(KeyCode.W))
+            {
+                dir = Function('W');
+            }
+            else if (Input.GetKey(KeyCode.S))
+            {
+                dir = Function('S');
+            }
+            else if (Input.GetKey(KeyCode.A))
+            {
+                dir = Function('A');
+            }
+            else if (Input.GetKey(KeyCode.D))
+            {
+                dir = Function('D');
+            }
+            return dir;
+        }
 
-        bool isNotShootingAnimPlaying = m_animator.GetCurrentAnimatorStateInfo(0).IsName("anim_shoot_backward") || m_animator.GetCurrentAnimatorStateInfo(0).IsName("anim_shoot_forward") || m_animator.GetCurrentAnimatorStateInfo(0).IsName("anim_shoot_left") || m_animator.GetCurrentAnimatorStateInfo(0).IsName( "anim_shoot_right");
-        if (m_animator)
+        void ProcessInput()
+        {
+            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+            angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
+            Vector2 dire = GetInput();
+            Move(dire);
+            moveY = dire.y;
+            moveX = dire.x;
+
+            bool isNotShootingAnimPlaying = m_animator.GetCurrentAnimatorStateInfo(0).IsName("anim_shoot_backward") || m_animator.GetCurrentAnimatorStateInfo(0).IsName("anim_shoot_forward") || m_animator.GetCurrentAnimatorStateInfo(0).IsName("anim_shoot_left") || m_animator.GetCurrentAnimatorStateInfo(0).IsName("anim_shoot_right");
+            if (m_animator)
             {
                 // UP
                 if (angle >= 45 && angle <= 135 && moveY == 0 && !isNotShootingAnimPlaying)
@@ -157,9 +160,9 @@ public class PlayerMovement : MonoBehaviour
                 // FORWARD
                 else if (angle >= -135 && angle < -45 && moveY == 0 && !isNotShootingAnimPlaying)
                 {
-               // m_animator.
-               
-               // print(m_animator.IsInTransition());
+                    // m_animator.
+
+                    // print(m_animator.IsInTransition());
                     //m_animator.SetTrigger("IdleForward 0");
                     m_animator.PlayInFixedTime("anim_idle");
                     //print("IdleForward 0");
@@ -183,27 +186,28 @@ public class PlayerMovement : MonoBehaviour
                 else if (angle > -135 && angle > 135 && moveX != 0 && !isNotShootingAnimPlaying)
                 {
                     //m_animator.SetTrigger("GoLeft");
-                    m_animator.PlayInFixedTime("anim_run_left" );
+                    m_animator.PlayInFixedTime("anim_run_left");
                     //print("GoLeft");
                 }
-                else if(!isNotShootingAnimPlaying)
+                else if (!isNotShootingAnimPlaying)
                 {
                     m_animator.PlayInFixedTime("anim_idle");
                     //m_animator.SetTrigger("IdleForward 0");
                     //print("IdleForward 0");
 
                 }
+            }
         }
-    }
-    
 
-    void Move(Vector2 movedirection)
-    {
-        if (!freeze)
+
+        void Move(Vector2 movedirection)
         {
-            //rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
-            movedirection = Vector3.ClampMagnitude(movedirection.normalized, maxSpeed);
-            rb.AddForce(movedirection.normalized * moveForce);
+            if (!freeze)
+            {
+                //rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
+                movedirection = Vector3.ClampMagnitude(movedirection.normalized, maxSpeed);
+                rb.AddForce(movedirection.normalized * moveForce);
+            }
         }
     }
 }
