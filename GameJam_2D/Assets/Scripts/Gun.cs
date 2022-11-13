@@ -11,7 +11,7 @@ public class Gun : MonoBehaviour
     public PlayerMovement playerMovement;
 
     private float nextShotTime;
-    private int shotsRemainingInBurst;
+    public int shotsRemainingInBurst;
     private bool isReloading;
     public AudioClip shut;
     public AudioClip relod;

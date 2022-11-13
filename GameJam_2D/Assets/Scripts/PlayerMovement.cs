@@ -100,19 +100,19 @@ public class PlayerMovement : MonoBehaviour
         Vector2 dir = Vector2.zero;
         if (Input.GetKey(KeyCode.W))
         {
-            dir = Function('W');
+            dir += Function('W');
         }
-        else if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.S))
         {
-            dir = Function('S');
+            dir += Function('S');
         }
-        else if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A))
         {
-            dir = Function('A');
+            dir += Function('A');
         }
-        else if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D))
         {
-            dir = Function('D');
+            dir += Function('D');
         }
         return dir;
     }
