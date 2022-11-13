@@ -21,7 +21,8 @@ public class Spawner : MonoBehaviour
     public float delayTime;
     public int delayScore;
     public int timeOnStage;
-
+    public Vector2 x_offset;
+    public Vector2 y_offset;
 
     int playerScore;
 
@@ -98,11 +99,11 @@ public class Spawner : MonoBehaviour
         Object enemy = Choose();
         int index = Random.Range(0, 3);
         Transform ins = enemy.GetComponent<Transform>().GetChild(index);
-        float x_offset = Random.Range(-1, 1);
-        float y_offset = Random.Range(-1, 1);
+        float x_offset_2 = Random.Range(x_offset.x, x_offset.y);
+        float y_offset_2 = Random.Range(y_offset.x, y_offset.y);
 
 
-        Vector2 randomSpawnPos = new Vector2(transform.position.x + x_offset, transform.position.y + y_offset);
+        Vector2 randomSpawnPos = new Vector2(transform.position.x + x_offset_2, transform.position.y + y_offset_2);
 
         //Vector2 randomSpawnPos = new Vector2(Random.Range(-verticalBorder, verticalBorder), Random.Range(-horizontalBorder, horizontalBorder));
         // Quaternion.identity
