@@ -93,6 +93,9 @@ public class PlayerMovement : MonoBehaviour
         void Update()
         {
             ProcessInput();
+        print(transform.position);
+        //print(Screen.width);
+        //print(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         }
 
         Vector2 GetInput()
