@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 4729441293978430966}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.5710425, y: -1.44, z: -0.13675027}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.80555, y: 0.80555, z: 0.80555}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -45,10 +45,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  enemies: []
+  enemies:
+  - {fileID: 1398113419228993905, guid: 76e569b0e7a61cb48ab4ea2f220da833, type: 3}
+  - {fileID: 3325395155277300475, guid: 58dac5ed553f2394ba738a47e712c945, type: 3}
+  - {fileID: 6348965862724514815, guid: d52772486c784614c9dfad2a28fb82d9, type: 3}
   verticalBorder: 0
   horizontalBorder: 0
-  probabilities: []
+  probabilities:
+  - 0.3
+  - 0.2
+  - 0.5
   secProbabilities: []
-  delayTime: 1
+  delayTime: 0
   delayScore: 0
+  timeOnStage: 10
