@@ -397,7 +397,7 @@ PrefabInstance:
       objectReference: {fileID: 477919396}
     - target: {fileID: 4729441293978430953, guid: 27a4e10f4bae6bf4ab8621a8b6636fc5, type: 3}
       propertyPath: delayTime
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4729441293978430953, guid: 27a4e10f4bae6bf4ab8621a8b6636fc5, type: 3}
       propertyPath: enemies.Array.size
