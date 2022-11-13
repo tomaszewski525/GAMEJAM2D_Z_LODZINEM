@@ -21,21 +21,17 @@ public class Projectile : MonoBehaviour
 
         rb.velocity = new Vector2(dir.x, dir.y) * speed;
 
-        Destroy(gameObject, lifetime);
+        //Destroy(gameObject, lifetime);
     }
 
-    private void Update()
-    {
-        rb.velocity = new Vector2(dir.x, dir.y) * speed;
-        Destroy(gameObject, lifetime);
-    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.GetComponent<IDamagable>() == null || collision.collider.tag == tag) 
-        { return; 
+
+        if((collision.collider.GetComponent<IDamagable>() != null))
+        {
+            collision.collider.GetComponent<IDamagable>().OnHit(damage);
         }
-        collision.collider.GetComponent<IDamagable>().OnHit(damage);
         Destroy(gameObject);
 
     }

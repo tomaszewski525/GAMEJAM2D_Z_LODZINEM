@@ -203,7 +203,7 @@ public class PlayerMovement : MonoBehaviour
 
         void Move(Vector2 movedirection)
         {
-            print(freeze);
+           // print(freeze);
             if (!freeze)
             {
                 //rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
