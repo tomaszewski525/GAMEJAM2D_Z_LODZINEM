@@ -22,11 +22,10 @@ public class Menu : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) )
         {
             Play();
             pressPlay?.Invoke(this);
-
         }
         else if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -34,6 +33,7 @@ public class Menu : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Return) && finish)
         {
+            Time.timeScale = 1;
             Reload();
         }
     }

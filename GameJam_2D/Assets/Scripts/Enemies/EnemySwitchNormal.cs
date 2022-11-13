@@ -15,7 +15,7 @@ public class EnemySwitchNormal : Enemy
         rb = GetComponent<Rigidbody2D>();
         score_num = 1;
         health = 2;
-        speed = 4;
+        speed = 3;
     }
     public void Move()
     {
@@ -41,7 +41,7 @@ public class EnemySwitchNormal : Enemy
         Vector3 dirToTarget = (player.transform.position - transform.position).normalized;
         Vector3 attackPosition = player.transform.position - dirToTarget * 1.3f;
 
-        float attackSpeed = 2;
+        float attackSpeed = 0.8f;
         float percent = 0;
 
         while (percent <= 1)

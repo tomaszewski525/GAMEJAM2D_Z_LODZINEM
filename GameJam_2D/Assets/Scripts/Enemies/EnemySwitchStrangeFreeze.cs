@@ -11,7 +11,7 @@ public class EnemySwitchStrangeFreeze : Enemy
         rb = GetComponent<Rigidbody2D>();
         score_num = 2;
         health = 2;
-        speed = 3;
+        speed = 2;
     }
     public void Move()
     {

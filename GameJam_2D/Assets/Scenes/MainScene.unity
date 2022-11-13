@@ -634,8 +634,12 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4729441293978430953, guid: 27a4e10f4bae6bf4ab8621a8b6636fc5, type: 3}
+      propertyPath: coefficient
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729441293978430953, guid: 27a4e10f4bae6bf4ab8621a8b6636fc5, type: 3}
       propertyPath: timeOnStage
-      value: 15
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4729441293978430966, guid: 27a4e10f4bae6bf4ab8621a8b6636fc5, type: 3}
       propertyPath: m_Name
