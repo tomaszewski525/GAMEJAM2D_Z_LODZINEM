@@ -27,14 +27,14 @@ public class Spawner : MonoBehaviour
 
     int playerScore;
 
-    int stage = 1;
+    float stage = 1;
     //int nextStageScore = 10;
 
     float spawnerTime;
 
     //int playerScore_cp = 0;
 
-    int newStage = 0;
+    float newStage = 0;
 
     //bool startSpawn = false;
 
@@ -64,7 +64,7 @@ public class Spawner : MonoBehaviour
                 {
                     spawnerTime -= timeOnStage;
 
-                    stage = stage + 1;
+                    stage = stage + 0.6f;
 
                 }
 
@@ -82,6 +82,8 @@ public class Spawner : MonoBehaviour
             {
                 float time = (float)timeOnStage / ((float)stage*coefficient);
                 time = Mathf.Clamp(time, 0.5f, 10.0f);
+
+
 
                 spawnTimer += Time.deltaTime;
                 if (spawnTimer > time)
