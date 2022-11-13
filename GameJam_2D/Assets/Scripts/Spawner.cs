@@ -12,7 +12,7 @@ public class Spawner : MonoBehaviour
     public float[] probabilities;
     public float[] secProbabilities;
     List<KeyValuePair<Object, float>> elements;
-    float time = 2.0f;
+    float time = 4.0f;
 
     public void Spawn()
     {
@@ -27,14 +27,14 @@ public class Spawner : MonoBehaviour
     {
         while (true)
         {
-            Mathf.Clamp(time, 0.5f, 2.0f);
+            Mathf.Clamp(time, 2.0f, 4.0f);
             Spawn();
             yield return new WaitForSeconds(time);
         }
     }
     void IncreseSpeed(Enemy e)
     {
-        time -= 0.1f;
+        time -= 0.2f;
     }
 
     private void Start()

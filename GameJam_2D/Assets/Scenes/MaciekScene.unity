@@ -300,10 +300,15 @@ MonoBehaviour:
   - {fileID: 401681695}
   - {fileID: 483274196}
   - {fileID: 1371436707}
-  HeartUI: []
-  emptyHeart: {fileID: 0}
+  HeartUI:
+  - {fileID: 24740182}
+  - {fileID: 1622731404}
+  - {fileID: 1107220623}
+  - {fileID: 1652985251}
+  - {fileID: 68986783}
+  emptyHeart: {fileID: 7414317243936193262, guid: 7538ffa5db0eb0b4e8d9ae8ea1e99066, type: 3}
   playerM: {fileID: 1291769515}
-  player: {fileID: 0}
+  player: {fileID: 1291769517}
   from: {r: 1, g: 0, b: 0.8749614, a: 1}
   to: {r: 1, g: 1, b: 1, a: 1}
   colorDuration: 1
@@ -1545,6 +1550,7 @@ MonoBehaviour:
   - 0.3
   - 0.3
   - 0.4
+  secProbabilities: []
 --- !u!4 &1210332067
 Transform:
   m_ObjectHideFlags: 0
@@ -1569,6 +1575,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 54574bb32fb304a4e8b9098c87f7cc38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1291769517 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2393236101144942051, guid: 61773c6465963ec4e92b6cae6462c4cf, type: 3}
+  m_PrefabInstance: {fileID: 1299349597}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0272b20de07d2374596cc7639173bb9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1299349597

@@ -7,7 +7,7 @@ public class UI : MonoBehaviour
 {
     public Transform[] KeysUI;
     public Transform[] HeartUI;
-    public Sprite emptyHeart;
+    public Transform emptyHeart;
     public PlayerMovement playerM;
     public Player player;
 
@@ -25,8 +25,14 @@ public class UI : MonoBehaviour
 
     void LoseHeart()
     {
-        HeartUI[index].GetComponent<SpriteRenderer>().sprite = emptyHeart;
-        index--;
+        if (HeartUI.Length != 0)
+        {
+            Transform t = HeartUI[index];
+            Vector3 pos = t.position;
+            Destroy(t.gameObject);
+            Instantiate(emptyHeart, pos, Quaternion.identity);
+            index--;
+        }
     }
 
     void SwapUI(Enemy e)
