@@ -13,7 +13,8 @@ public class Gun : MonoBehaviour
     private float nextShotTime;
     private int shotsRemainingInBurst;
     private bool isReloading;
-
+    public AudioClip shut;
+    public AudioClip relod;
 
     void Start()
     {
@@ -25,6 +26,7 @@ public class Gun : MonoBehaviour
 
         if (Time.time > nextShotTime && !isReloading)
         {
+            Camera.main.GetComponent<AudioSource>().PlayOneShot(shut);
 
             if (playerMovement.angle >= 45 && playerMovement.angle <= 135)
             {
@@ -73,8 +75,8 @@ public class Gun : MonoBehaviour
     {
         if (!isReloading && shotsRemainingInBurst != burstCount)
         {
+            Camera.main.GetComponent<AudioSource>().PlayOneShot(relod);
             StartCoroutine(AnimateReload());
-            //AudioManager.instance.PlaySound(reloadAudio, transform.position);
         }
     }
 
@@ -82,7 +84,7 @@ public class Gun : MonoBehaviour
     {
         isReloading = true;
         print("reloading");
-        yield return new WaitForSeconds(.4f);
+        yield return new WaitForSeconds(1.2f);
         isReloading = false;
         shotsRemainingInBurst = burstCount;
     }

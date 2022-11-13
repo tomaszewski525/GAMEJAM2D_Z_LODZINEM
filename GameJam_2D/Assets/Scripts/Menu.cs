@@ -13,6 +13,7 @@ public class Menu : MonoBehaviour
     public Text[] endScene;
     public Color endScreneFrom;
     public Color endScreneTo;
+    public AudioClip backing;
 
     bool finish;
 
@@ -82,6 +83,7 @@ public class Menu : MonoBehaviour
         StartCoroutine(UnFadeScreen());
         for (int i = 0; i < texts.Length; i++)
         {
+            GetComponent<AudioSource>().PlayOneShot(backing);
             StartCoroutine(FadeText(texts[i]));
         }
     }
