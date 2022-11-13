@@ -27,6 +27,7 @@ public class Player : MonoBehaviour, IDamagable
     public void Die()
     {
         alive = false;
+        StopAllCoroutines();
         print("u died");
     }
 }

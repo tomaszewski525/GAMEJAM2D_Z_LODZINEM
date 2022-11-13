@@ -29,10 +29,16 @@ public class EnemySwitchStrangeFreeze : Enemy
     {
         if (Vector2.Distance(transform.position, player.transform.position) <= 1.3f)
         {
-            player.gameObject.GetComponent<PlayerMovement>().StartCoroutine("Freeze");
-            StartCoroutine("Attack");
-            Die();
+            
         }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.GetComponent<Player>() == null) { return; }
+        StartCoroutine(player.gameObject.GetComponent<PlayerMovement>().Freeze());
+        StartCoroutine(Attack());
+        Die();
     }
 
     IEnumerator Attack()

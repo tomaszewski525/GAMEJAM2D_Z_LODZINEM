@@ -26,14 +26,12 @@ public class EnemySwitchNormal : Enemy
     private void FixedUpdate()
     {
         Move();
-        CheckIfAttacked();
     }
 
-    void CheckIfAttacked()
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        if (Vector2.Distance(transform.position, player.transform.position) <= 1.7)
-        {
-            player.GetComponent<Player>().OnHit(-1);
-        }
+        if (collision.collider.GetComponent<Player>() == null) { return; }
+        player.GetComponent<Player>().OnHit(-1);
     }
+
 }
