@@ -5,11 +5,10 @@ using UnityEngine.UI;
 
 public class ScoreKeeper : MonoBehaviour
 {
-    int score;
-    Text t;
+    public int score;
+    public Text t;
     private void Start()
     {
-        t = GetComponent<Text>();
         Enemy.OnEnemyDeath += AddScore;
     }
 

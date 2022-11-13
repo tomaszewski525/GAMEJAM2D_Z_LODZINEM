@@ -32,6 +32,25 @@ public class EnemySwitchNormal : Enemy
     {
         if (collision.collider.GetComponent<Player>() == null) { return; }
         player.GetComponent<Player>().OnHit(-1);
+        StartCoroutine(Attack());
+    }
+
+    IEnumerator Attack()
+    {
+        Vector3 originalPosition = transform.position;
+        Vector3 dirToTarget = (player.transform.position - transform.position).normalized;
+        Vector3 attackPosition = player.transform.position - dirToTarget * 2.0f;
+
+        float attackSpeed = 3;
+        float percent = 0;
+
+        while (percent <= 1)
+        {
+            percent += Time.deltaTime * attackSpeed;
+            float interpolation = (-Mathf.Pow(percent, 2) + percent) * 4;
+            transform.position = Vector3.Lerp(originalPosition, attackPosition, interpolation);
+            yield return null;
+        }
     }
 
 }

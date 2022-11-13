@@ -49,8 +49,8 @@ MonoBehaviour:
   - {fileID: 1398113419228993905, guid: 76e569b0e7a61cb48ab4ea2f220da833, type: 3}
   - {fileID: 3325395155277300475, guid: 58dac5ed553f2394ba738a47e712c945, type: 3}
   - {fileID: 6348965862724514815, guid: d52772486c784614c9dfad2a28fb82d9, type: 3}
-  verticalBorder: 0
-  horizontalBorder: 0
+  verticalBorder: 10
+  horizontalBorder: 5
   probabilities:
   - 0.3
   - 0.2
@@ -58,4 +58,4 @@ MonoBehaviour:
   secProbabilities: []
   delayTime: 0
   delayScore: 0
-  timeOnStage: 10
+  timeOnStage: 5

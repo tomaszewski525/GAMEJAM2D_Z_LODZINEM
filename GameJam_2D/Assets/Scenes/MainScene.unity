@@ -682,9 +682,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4729441293978430953, guid: 27a4e10f4bae6bf4ab8621a8b6636fc5, type: 3}
-      propertyPath: timeOnStage
-      value: 5
-      objectReference: {fileID: 0}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 661183402}
     - target: {fileID: 4729441293978430966, guid: 27a4e10f4bae6bf4ab8621a8b6636fc5, type: 3}
       propertyPath: m_Name
       value: EnemySpawner
@@ -910,6 +910,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
+  t: {fileID: 2142735684}
 --- !u!114 &575751257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -986,13 +987,18 @@ RectTransform:
   - {fileID: 123441566}
   - {fileID: 2142735683}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &661183402 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1045206167011717090, guid: 61773c6465963ec4e92b6cae6462c4cf, type: 3}
+  m_PrefabInstance: {fileID: 1106413175}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &822334429
 GameObject:
   m_ObjectHideFlags: 0
@@ -1268,7 +1274,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2393236101144942051, guid: 61773c6465963ec4e92b6cae6462c4cf, type: 3}
   m_PrefabInstance: {fileID: 1106413175}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 661183402}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0272b20de07d2374596cc7639173bb9d, type: 3}
@@ -1279,7 +1285,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9005655107255860203, guid: 61773c6465963ec4e92b6cae6462c4cf, type: 3}
   m_PrefabInstance: {fileID: 1106413175}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 661183402}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 54574bb32fb304a4e8b9098c87f7cc38, type: 3}
@@ -1348,7 +1354,8 @@ PrefabInstance:
       propertyPath: relod
       value: 
       objectReference: {fileID: 8300000, guid: 3c5c1d4d7b9307c458890a4beb12e4ae, type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3672726310168410144, guid: 61773c6465963ec4e92b6cae6462c4cf, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 61773c6465963ec4e92b6cae6462c4cf, type: 3}
 --- !u!1 &1137282454
 GameObject:

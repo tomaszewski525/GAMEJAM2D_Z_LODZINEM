@@ -121,7 +121,7 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
-        scoreKeeper = player.GetComponent<ScoreKeeper>();
+        scoreKeeper = FindObjectOfType<ScoreKeeper>();
 
         //Enemy.OnEnemyDeath += IncreseSpeed;
         elements = new List<KeyValuePair<Object, float>>();

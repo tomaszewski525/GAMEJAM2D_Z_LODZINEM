@@ -9,16 +9,8 @@ public class EnemySwitchStrangeIdle : Enemy
     public void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        score_num = 0;
+        score_num = 1;
         health = 1;
         speed = 0;
-    }
-
-    void CheckIfAttacked()
-    {
-        if (Vector2.Distance(transform.position, player.transform.position) <= 1.7)
-        {
-            player.GetComponent<Player>().Die();
-        }
     }
 }
