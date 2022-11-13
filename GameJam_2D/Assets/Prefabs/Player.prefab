@@ -107,6 +107,8 @@ MonoBehaviour:
   moveSpeed: 5
   moveForce: 10
   maxSpeed: 5
+  angle: 0
+  m_animator: {fileID: 0}
   movementKeyPattern: WSAD
 --- !u!114 &3792782091295230183
 MonoBehaviour:
@@ -158,7 +160,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.017320741, y: 0.003829956}
+  m_Offset: {x: 0.001989305, y: 0.016822867}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -169,7 +171,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.19709975, y: 0.31742817}
+  m_Size: {x: 0.117224336, y: 0.16878907}
   m_EdgeRadius: 0
 --- !u!50 &9174287419536490987
 Rigidbody2D:

@@ -15,8 +15,8 @@ public class Projectile : MonoBehaviour
     void Start()
     {
         player = FindObjectOfType<Player>();
-        Physics2D.IgnoreCollision(player.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-        rb = GetComponent<Rigidbody2D>();
+        Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+
         dir = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
         rb.velocity = new Vector2(dir.x, dir.y) * speed;
         Destroy(gameObject, lifetime);
@@ -24,9 +24,13 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.GetComponent<IDamagable>() == null || collision.collider.tag == tag) { return; }
+        print("Kurde");
+        if (collision.collider.GetComponent<IDamagable>() == null || collision.collider.tag == tag) 
+        { return; 
+        }
         collision.collider.GetComponent<IDamagable>().OnHit(damage);
         Destroy(gameObject);
+
     }
 
 }
