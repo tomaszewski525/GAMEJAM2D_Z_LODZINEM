@@ -27,7 +27,6 @@ public class Menu : MonoBehaviour
             Play();
             pressPlay?.Invoke(this);
 
-
         }
         else if (Input.GetKeyDown(KeyCode.Escape))
         {
