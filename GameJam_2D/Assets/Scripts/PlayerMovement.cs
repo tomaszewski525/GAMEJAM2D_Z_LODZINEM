@@ -76,16 +76,16 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator FlashFreeze()
     {
-        print(123);
-        float t = 0f;
-        SpriteRenderer ren = GetComponent<SpriteRenderer>();
+       print(123);
+       float t = 0f;
+       SpriteRenderer ren = GetComponent<SpriteRenderer>();
        while (t < colorDuration)
-        {
+       {
             t += Time.deltaTime;
            ren.color = Color.Lerp(from, to, t / colorDuration);
            yield return null;
         }
-    }
+//}
     void Update()
     {
         ProcessInput();
