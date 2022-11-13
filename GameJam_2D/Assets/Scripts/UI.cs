@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
@@ -29,6 +30,7 @@ public class UI : MonoBehaviour
         {
             Transform t = HeartUI[index];
             Vector3 pos = t.position;
+            HeartUI = HeartUI.Where(val => val != t).ToArray();
             Destroy(t.gameObject);
             Instantiate(emptyHeart, pos, Quaternion.identity);
             index--;

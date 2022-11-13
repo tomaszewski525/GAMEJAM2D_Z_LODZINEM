@@ -15,7 +15,7 @@ public class EnemySwitchNormal : Enemy
         rb = GetComponent<Rigidbody2D>();
         score_num = 1;
         health = 2;
-        speed = 10;
+        speed = 5;
     }
     public void Move()
     {
