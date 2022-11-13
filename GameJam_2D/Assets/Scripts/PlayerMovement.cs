@@ -84,8 +84,9 @@ public class PlayerMovement : MonoBehaviour
             t += Time.deltaTime;
             ren.color = Color.Lerp(from, to, t / colorDuration);
             yield return null;
-        }
-        //}
+        } 
+    }
+        
         void Update()
         {
             ProcessInput();
@@ -202,6 +203,7 @@ public class PlayerMovement : MonoBehaviour
 
         void Move(Vector2 movedirection)
         {
+            print(freeze);
             if (!freeze)
             {
                 //rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
@@ -210,4 +212,3 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
-}
