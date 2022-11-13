@@ -12,7 +12,7 @@ public class Spawner : MonoBehaviour
     public float[] probabilities;
     public float[] secProbabilities;
     List<KeyValuePair<Object, float>> elements;
-    float time = 4.0f;
+    float time = 5.0f;
 
     public void Spawn()
     {

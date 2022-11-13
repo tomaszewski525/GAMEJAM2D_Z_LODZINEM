@@ -65,18 +65,21 @@ public class PlayerMovement : MonoBehaviour
         player = GetComponent<PlayerArrowSwitch>();
         movementKeyPattern = player.currentArrows;
     }
+
+    public void ASD()
+    {
+        StartCoroutine(Freeze());
+    }
     public IEnumerator Freeze()
     {
         freeze = true;
-        //StartCoroutine(FlashFreeze());
-        yield return new WaitForSeconds(3.0f);
+        StartCoroutine(FlashFreeze());
+        yield return new WaitForSeconds(1.5f);
         freeze = false;
-        yield return null;
     }
 
     IEnumerator FlashFreeze()
     {
-        print(123);
         float t = 0f;
         SpriteRenderer ren = GetComponent<SpriteRenderer>();
         while (t < colorDuration)
