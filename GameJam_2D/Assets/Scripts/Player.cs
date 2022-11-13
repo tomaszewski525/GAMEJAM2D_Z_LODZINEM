@@ -12,7 +12,7 @@ public class Player : MonoBehaviour, IDamagable
     public delegate void PlayerDieAction();
     public static event PlayerDieAction OnPlayerDeath;
     public bool alive = true;
-    int health = 10;
+    int health = 5;
 
     public void OnHit(int damage)
     {
@@ -26,19 +26,10 @@ public class Player : MonoBehaviour, IDamagable
             Die();
         }
     }
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Die();
-        }
-    }
 
     public void Die()
     {
         OnPlayerDeath();
         alive = false;
-        StopAllCoroutines();
-        print("u died");
     }
 }

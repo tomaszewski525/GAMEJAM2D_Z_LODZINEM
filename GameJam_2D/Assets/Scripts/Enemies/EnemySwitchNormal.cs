@@ -31,7 +31,7 @@ public class EnemySwitchNormal : Enemy
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.GetComponent<Player>() == null) { return; }
-        player.GetComponent<Player>().OnHit(-1);
+        player.GetComponent<Player>().OnHit(1);
         StartCoroutine(Attack());
     }
 
@@ -39,9 +39,9 @@ public class EnemySwitchNormal : Enemy
     {
         Vector3 originalPosition = transform.position;
         Vector3 dirToTarget = (player.transform.position - transform.position).normalized;
-        Vector3 attackPosition = player.transform.position - dirToTarget * 2.0f;
+        Vector3 attackPosition = player.transform.position - dirToTarget * 1.3f;
 
-        float attackSpeed = 3;
+        float attackSpeed = 2;
         float percent = 0;
 
         while (percent <= 1)

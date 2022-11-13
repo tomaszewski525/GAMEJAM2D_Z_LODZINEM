@@ -55,7 +55,6 @@ public class Gun : MonoBehaviour
             shotsRemainingInBurst--;
             nextShotTime = Time.time + msBetweenShots / 1000;
 
-            //Instantiate(projectile, transform.position, transform.rotation, transform);
             Instantiate(projectile, projectileSpawn.transform.position, projectileSpawn.rotation);
         }
     }
@@ -83,7 +82,6 @@ public class Gun : MonoBehaviour
     IEnumerator AnimateReload()
     {
         isReloading = true;
-        print("reloading");
         yield return new WaitForSeconds(1.2f);
         isReloading = false;
         shotsRemainingInBurst = burstCount;
