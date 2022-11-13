@@ -52,7 +52,9 @@ public class Gun : MonoBehaviour
 
             shotsRemainingInBurst--;
             nextShotTime = Time.time + msBetweenShots / 1000;
-            Instantiate(projectile, projectileSpawn.position, projectileSpawn.rotation);
+
+            //Instantiate(projectile, transform.position, transform.rotation, transform);
+            Instantiate(projectile, projectileSpawn.transform.position, projectileSpawn.rotation);
         }
     }
     private void Update()

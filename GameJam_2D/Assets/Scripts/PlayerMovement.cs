@@ -68,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
     public IEnumerator Freeze()
     {
         freeze = true;
-        StartCoroutine(FlashFreeze());
+        //StartCoroutine(FlashFreeze());
         yield return new WaitForSeconds(3.0f);
         freeze = false;
         yield return null;
@@ -79,11 +79,11 @@ public class PlayerMovement : MonoBehaviour
         print(123);
         float t = 0f;
         SpriteRenderer ren = GetComponent<SpriteRenderer>();
-        while (t < colorDuration)
+       while (t < colorDuration)
         {
             t += Time.deltaTime;
-            ren.color = Color.Lerp(from, to, t / colorDuration);
-            yield return null;
+           ren.color = Color.Lerp(from, to, t / colorDuration);
+           yield return null;
         }
     }
     void Update()
@@ -201,7 +201,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!freeze)
         {
-            rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
+            //rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
+            movedirection = Vector3.ClampMagnitude(movedirection.normalized, maxSpeed);
             rb.AddForce(movedirection.normalized * moveForce);
         }
     }
