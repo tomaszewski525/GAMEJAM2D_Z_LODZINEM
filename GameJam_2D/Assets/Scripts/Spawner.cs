@@ -21,6 +21,7 @@ public class Spawner : MonoBehaviour
     public float delayTime;
     public int delayScore;
     public int timeOnStage;
+    public float coefficient;
     public Vector2 x_offset;
     public Vector2 y_offset;
 
@@ -79,7 +80,7 @@ public class Spawner : MonoBehaviour
 
             if (stage != 0 && (delayTime < 0 || playerScore > delayScore))
             {
-                float time = (float)timeOnStage / (float)stage;
+                float time = (float)timeOnStage / ((float)stage*coefficient);
                 time = Mathf.Clamp(time, 0.5f, 10.0f);
 
                 spawnTimer += Time.deltaTime;
