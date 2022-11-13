@@ -6,12 +6,12 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public Object[] enemies;
+    public GameObject[] enemies;
     public float verticalBorder;
     public float horizontalBorder;
     public float[] probabilities;
     public float[] secProbabilities;
-    List<KeyValuePair<Object, float>> elements;
+    List<KeyValuePair<GameObject, float>> elements;
     float time = 5.0f;
 
     public void Spawn()
@@ -32,6 +32,7 @@ public class Spawner : MonoBehaviour
             yield return new WaitForSeconds(time);
         }
     }
+
     void IncreseSpeed(Enemy e)
     {
         time -= 0.2f;
@@ -40,10 +41,10 @@ public class Spawner : MonoBehaviour
     private void Start()
     {
         Enemy.OnEnemyDeath += IncreseSpeed;
-        elements = new List<KeyValuePair<Object, float>>();
+        elements = new List<KeyValuePair<GameObject, float>>();
         for (int i = 0; i < enemies.Length; i++)
         {
-            elements.Add(new KeyValuePair<Object, float>(enemies[i], probabilities[i]));
+            elements.Add(new KeyValuePair<GameObject, float>(enemies[i], probabilities[i]));
         }
         StartCoroutine(ISpawner());
     }
@@ -61,6 +62,6 @@ public class Spawner : MonoBehaviour
                 return elements[i].Key;
             }
         }
-        return new Object();
+        return new GameObject();
     }
 }

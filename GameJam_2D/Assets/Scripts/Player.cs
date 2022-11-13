@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour, IDamagable
@@ -8,7 +9,9 @@ public class Player : MonoBehaviour, IDamagable
 
     public delegate void PlayerHitAction();
     public static event PlayerHitAction OnPlayerHit;
-    bool alive = true;
+    public delegate void PlayerDieAction();
+    public static event PlayerDieAction OnPlayerDeath;
+    public bool alive = true;
     int health = 10;
 
     public void OnHit(int damage)
@@ -23,9 +26,17 @@ public class Player : MonoBehaviour, IDamagable
             Die();
         }
     }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Die();
+        }
+    }
 
     public void Die()
     {
+        OnPlayerDeath();
         alive = false;
         StopAllCoroutines();
         print("u died");

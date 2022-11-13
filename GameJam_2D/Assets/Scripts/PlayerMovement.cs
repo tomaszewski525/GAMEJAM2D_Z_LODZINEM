@@ -89,129 +89,97 @@ public class PlayerMovement : MonoBehaviour
             yield return null;
         } 
     }
-        
-        void Update()
+       
+    void Update()
+    {
+        if (player.gameObject.GetComponent<Player>().alive != true) { return; }
+        ProcessInput();
+    }
+    Vector2 GetInput()
+    {
+        Vector2 dir = Vector2.zero;
+        if (Input.GetKey(KeyCode.W))
         {
-            ProcessInput();
+            dir = Function('W');
         }
-
-        Vector2 GetInput()
+        else if (Input.GetKey(KeyCode.S))
         {
-            Vector2 dir = Vector2.zero;
-            if (Input.GetKey(KeyCode.W))
-            {
-                dir = Function('W');
-            }
-            else if (Input.GetKey(KeyCode.S))
-            {
-                dir = Function('S');
-            }
-            else if (Input.GetKey(KeyCode.A))
-            {
-                dir = Function('A');
-            }
-            else if (Input.GetKey(KeyCode.D))
-            {
-                dir = Function('D');
-            }
-            return dir;
+            dir = Function('S');
         }
-
-        void ProcessInput()
+        else if (Input.GetKey(KeyCode.A))
         {
-            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-            angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
-            Vector2 dire = GetInput();
-            Move(dire);
-            moveY = dire.y;
-            moveX = dire.x;
-
-            bool isNotShootingAnimPlaying = m_animator.GetCurrentAnimatorStateInfo(0).IsName("anim_shoot_backward") || m_animator.GetCurrentAnimatorStateInfo(0).IsName("anim_shoot_forward") || m_animator.GetCurrentAnimatorStateInfo(0).IsName("anim_shoot_left") || m_animator.GetCurrentAnimatorStateInfo(0).IsName("anim_shoot_right");
-            if (m_animator)
-            {
-                // UP
-                if (angle >= 45 && angle <= 135 && moveY == 0 && !isNotShootingAnimPlaying)
-                {
-                    //m_animator.SetTrigger("IdleBackward");
-                    m_animator.Play("anim_idle_backward");
-                    //print("IdleBackward");
-                }
-                else if (angle >= 45 && angle <= 135 && moveY != 0 && !isNotShootingAnimPlaying)
-                {
-                    m_animator.Play("anim_run_backward");
-                    //m_animator.SetTrigger("GoBackward");
-                    //print("GOBackward");
-                }
-
-
-                // RIGHT
-                else if (angle >= -45 && angle < 45 && moveX == 0 && !isNotShootingAnimPlaying)
-                {
-                    // m_animator.SetTrigger("IdleRight");
-                    m_animator.Play("anim_idle_right");
-                    //print("IdleRight");
-                }
-                else if (angle >= -45 && angle < 45 && moveX != 0 && !isNotShootingAnimPlaying)
-                {
-                    // m_animator.SetTrigger("GoRight");
-                    m_animator.Play("anim_run_right");
-                    //print("GoRight");
-                }
-
-
-
-
-                // FORWARD
-                else if (angle >= -135 && angle < -45 && moveY == 0 && !isNotShootingAnimPlaying)
-                {
-                    // m_animator.
-
-                    // print(m_animator.IsInTransition());
-                    //m_animator.SetTrigger("IdleForward 0");
-                    m_animator.PlayInFixedTime("anim_idle");
-                    //print("IdleForward 0");
-                }
-                else if (angle >= -135 && angle < -45 && moveY != 0 && !isNotShootingAnimPlaying)
-                {
-                    //m_animator.SetTrigger("GoForward");
-                    m_animator.PlayInFixedTime("anim_run_forward");
-                    //print("GoForward");
-                }
-
-
-
-                // LEFT
-                else if (angle > -135 && angle > 135 && moveX == 0 && !isNotShootingAnimPlaying)
-                {
-                    //m_animator.SetTrigger("IdleLeft");
-                    m_animator.PlayInFixedTime("anim_idle_left");
-                    //print("IdleLeft");
-                }
-                else if (angle > -135 && angle > 135 && moveX != 0 && !isNotShootingAnimPlaying)
-                {
-                    //m_animator.SetTrigger("GoLeft");
-                    m_animator.PlayInFixedTime("anim_run_left");
-                    //print("GoLeft");
-                }
-                else if (!isNotShootingAnimPlaying)
-                {
-                    m_animator.PlayInFixedTime("anim_idle");
-                    //m_animator.SetTrigger("IdleForward 0");
-                    //print("IdleForward 0");
-
-                }
-            }
+            dir = Function('A');
         }
-
-
-        void Move(Vector2 movedirection)
+        else if (Input.GetKey(KeyCode.D))
         {
-           // print(freeze);
-            if (!freeze)
+            dir = Function('D');
+        }
+        return dir;
+    }
+    void ProcessInput()
+    {
+        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
+        Vector2 dire = GetInput();
+        Move(dire);
+        moveY = dire.y;
+        moveX = dire.x;
+
+        bool isNotShootingAnimPlaying = m_animator.GetCurrentAnimatorStateInfo(0).IsName("anim_shoot_backward") || m_animator.GetCurrentAnimatorStateInfo(0).IsName("anim_shoot_forward") || m_animator.GetCurrentAnimatorStateInfo(0).IsName("anim_shoot_left") || m_animator.GetCurrentAnimatorStateInfo(0).IsName("anim_shoot_right");
+        if (m_animator)
+        {
+            // UP
+            if (angle >= 45 && angle <= 135 && moveY == 0 && !isNotShootingAnimPlaying)
             {
-                //rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
-                movedirection = Vector3.ClampMagnitude(movedirection.normalized, maxSpeed);
-                rb.AddForce(movedirection.normalized * moveForce);
+                m_animator.Play("anim_idle_backward");
+            }
+            else if (angle >= 45 && angle <= 135 && moveY != 0 && !isNotShootingAnimPlaying)
+            {
+                m_animator.Play("anim_run_backward");
+            }
+
+            // RIGHT
+            else if (angle >= -45 && angle < 45 && moveX == 0 && !isNotShootingAnimPlaying)
+            {
+                m_animator.Play("anim_idle_right");
+            }
+            else if (angle >= -45 && angle < 45 && moveX != 0 && !isNotShootingAnimPlaying)
+            {
+                m_animator.Play("anim_run_right");
+            }
+
+            // FORWARD
+            else if (angle >= -135 && angle < -45 && moveY == 0 && !isNotShootingAnimPlaying)
+            {
+                m_animator.PlayInFixedTime("anim_idle");
+            }
+            else if (angle >= -135 && angle < -45 && moveY != 0 && !isNotShootingAnimPlaying)
+            {
+                m_animator.PlayInFixedTime("anim_run_forward");
+            }
+
+            // LEFT
+            else if (angle > -135 && angle > 135 && moveX == 0 && !isNotShootingAnimPlaying)
+            {
+                m_animator.PlayInFixedTime("anim_idle_left");
+            }
+            else if (angle > -135 && angle > 135 && moveX != 0 && !isNotShootingAnimPlaying)
+            {
+                m_animator.PlayInFixedTime("anim_run_left");
+
+            }
+            else if (!isNotShootingAnimPlaying)
+            {
+                m_animator.PlayInFixedTime("anim_idle");
             }
         }
     }
+    void Move(Vector2 movedirection)
+    {
+        if (!freeze)
+        {
+            movedirection = Vector3.ClampMagnitude(movedirection.normalized, maxSpeed);
+            rb.AddForce(movedirection.normalized * moveForce);
+        }
+    }
+}
