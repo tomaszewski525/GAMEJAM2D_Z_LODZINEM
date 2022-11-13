@@ -27,8 +27,8 @@ public class Spawner : MonoBehaviour
     {
         while (true)
         {
-            Mathf.Clamp(time, 0.5f, 2.0f);
-            Spawn();
+           Mathf.Clamp(time, 0.5f, 2.0f);
+           Spawn();
             yield return new WaitForSeconds(time);
         }
     }

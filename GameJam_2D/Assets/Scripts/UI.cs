@@ -44,12 +44,12 @@ public class UI : MonoBehaviour
         StartCoroutine(FlashUI(s));
     }
 
-    IEnumerator FlashUI(GameObject go)
+   IEnumerator FlashUI(GameObject go)
     {
         float t = 0f;
         SpriteRenderer ren = go.GetComponent<SpriteRenderer>();
         while (t < colorDuration)
-        {
+        { 
             t += Time.deltaTime;
             ren.color = Color.Lerp(from, to, t/colorDuration);
             yield return null;

@@ -32,7 +32,7 @@ public class EnemySwitchStrangeFreeze : Enemy
             
         }
     }
-
+    
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.GetComponent<Player>() == null) { return; }
@@ -40,7 +40,7 @@ public class EnemySwitchStrangeFreeze : Enemy
         StartCoroutine(Attack());
         Die();
     }
-
+    
     IEnumerator Attack()
     {
         print("enter");
@@ -56,8 +56,9 @@ public class EnemySwitchStrangeFreeze : Enemy
             print("while");
             percent += Time.deltaTime * attackSpeed;
             float interpolation = (-Mathf.Pow(percent, 2) + percent) * 4;
-            transform.position = Vector3.Lerp(originalPosition, attackPosition, interpolation);
+           transform.position = Vector3.Lerp(originalPosition, attackPosition, interpolation);
             yield return null;
         }
     }
+    
 }
