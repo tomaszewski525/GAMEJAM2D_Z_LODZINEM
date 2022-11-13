@@ -37,49 +37,58 @@ public class Spawner : MonoBehaviour
     //bool startSpawn = false;
 
     float spawnTimer;
+    bool isActive = false;
+
+    void Active(Menu e)
+    {
+        isActive = true;
+    }
+
     public void Update()
     {
-        delayTime -= Time.deltaTime;
-        playerScore = scoreKeeper.score;
-
-        print(playerScore);
-
-        if (delayTime < 0 || playerScore > delayScore)
+        if (isActive)
         {
-            spawnerTime += Time.deltaTime;
-            //print(spawnerTime % timeOnStage);
+            delayTime -= Time.deltaTime;
+            playerScore = scoreKeeper.score;
 
-            if (timeOnStage - spawnerTime < 0)
+            print(playerScore);
+
+            if (delayTime < 0 || playerScore > delayScore)
             {
-                spawnerTime -= timeOnStage;
+                spawnerTime += Time.deltaTime;
+                //print(spawnerTime % timeOnStage);
 
-                stage = stage + 1;
+                if (timeOnStage - spawnerTime < 0)
+                {
+                    spawnerTime -= timeOnStage;
+
+                    stage = stage + 1;
+
+                }
+
+                if (newStage != stage)
+                {
+                    //spawner_Handler = Instantiate(spawner_Handler, transform.position, transform.rotation);
+                    newStage = stage;
+                    //startSpawn = true;
+                }
 
             }
 
-            if (newStage != stage)
-            {
-                //spawner_Handler = Instantiate(spawner_Handler, transform.position, transform.rotation);
-                newStage = stage;
-                //startSpawn = true;
-            }
 
+            if (stage != 0 && (delayTime < 0 || playerScore > delayScore))
+            {
+                float time = (float)timeOnStage / (float)stage;
+                time = Mathf.Clamp(time, 0.5f, 10.0f);
+
+                spawnTimer += Time.deltaTime;
+                if (spawnTimer > time)
+                {
+                    Spawn();
+                    spawnTimer = 0;
+                }
+            }
         }
-
-
-        if(stage != 0 && (delayTime < 0 || playerScore > delayScore))
-        {
-            float time = (float)timeOnStage / (float)stage;
-            time = Mathf.Clamp(time, 0.5f, 10.0f);
-
-            spawnTimer += Time.deltaTime;
-            if (spawnTimer> time)
-            {
-                Spawn();
-                spawnTimer = 0;
-            }
-        }
-
     }
 
 
@@ -89,8 +98,8 @@ public class Spawner : MonoBehaviour
         Object enemy = Choose();
         int index = Random.Range(0, 3);
         Transform ins = enemy.GetComponent<Transform>().GetChild(index);
-        float x_offset = Random.Range(-2, 2);
-        float y_offset = Random.Range(-2, 2);
+        float x_offset = Random.Range(-1, 1);
+        float y_offset = Random.Range(-1, 1);
 
 
         Vector2 randomSpawnPos = new Vector2(transform.position.x + x_offset, transform.position.y + y_offset);
@@ -121,6 +130,7 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
+        Menu.pressPlay += Active;
         scoreKeeper = FindObjectOfType<ScoreKeeper>();
 
         //Enemy.OnEnemyDeath += IncreseSpeed;
