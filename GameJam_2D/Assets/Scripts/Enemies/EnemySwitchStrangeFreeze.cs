@@ -22,21 +22,12 @@ public class EnemySwitchStrangeFreeze : Enemy
     private void FixedUpdate()
     {
         Move();
-        CheckIfAttacked();
-    }
-
-    void CheckIfAttacked()
-    {
-        if (Vector2.Distance(transform.position, player.transform.position) <= 1.3f)
-        {
-            
-        }
     }
     
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.GetComponent<Player>() == null) { return; }
-        StartCoroutine(player.gameObject.GetComponent<PlayerMovement>().Freeze());
+        player.gameObject.GetComponent<PlayerMovement>().ASD();
         StartCoroutine(Attack());
         Die();
     }
