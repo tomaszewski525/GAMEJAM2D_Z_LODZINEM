@@ -6,18 +6,27 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 public class UI : MonoBehaviour
 {
     public Transform[] KeysUI;
+    public Transform[] HeartUI;
+    public Sprite emptyHeart;
     public PlayerMovement playerM;
-    private string pattern;
+    public Player player;
+
+    public Color from;
+    public Color to;
+    public float colorDuration;
+    int index = 4;
 
     string[] arrowSwitchTypes = { "WS", "AD", "AW", "DW", "AS", "SD" };
     private void Awake()
     {
         Enemy.OnEnemyDeath += SwapUI;
+        Player.OnPlayerHit += LoseHeart;
     }
 
-    private void Update()
+    void LoseHeart()
     {
-        pattern = playerM.movementKeyPattern;
+        HeartUI[index].GetComponent<SpriteRenderer>().sprite = emptyHeart;
+        index--;
     }
 
     void SwapUI(Enemy e)
@@ -31,10 +40,19 @@ public class UI : MonoBehaviour
         Vector3 tempPosition = f.transform.position;
         f.transform.position = s.transform.position;
         s.transform.position = tempPosition;
+        StartCoroutine(FlashUI(f));
+        StartCoroutine(FlashUI(s));
     }
 
-    IEnumerator FlashUI(Transform f1, Transform f2)
+    IEnumerator FlashUI(GameObject go)
     {
-        yield return null;
+        float t = 0f;
+        SpriteRenderer ren = go.GetComponent<SpriteRenderer>();
+        while (t < colorDuration)
+        {
+            t += Time.deltaTime;
+            ren.color = Color.Lerp(from, to, t/colorDuration);
+            yield return null;
+        }
     }
 }
